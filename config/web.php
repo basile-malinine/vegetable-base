@@ -5,8 +5,12 @@ $db = require __DIR__ . '/db.php';
 
 $config = [
     'id' => 'basic',
+    'name' => 'Овощная база',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
+    'language' => 'ru-RU',
+    'timeZone' => 'Europe/Moscow',
+
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
         '@npm'   => '@vendor/npm-asset',
@@ -20,7 +24,7 @@ $config = [
             'class' => 'yii\caching\FileCache',
         ],
         'user' => [
-            'identityClass' => 'app\models\User',
+            'identityClass' => 'app\models\User\User',
             'enableAutoLogin' => true,
         ],
         'errorHandler' => [
@@ -42,14 +46,15 @@ $config = [
             ],
         ],
         'db' => $db,
-        /*
+
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
+
             'rules' => [
+                'unit/<action:(edit|delete)>/<id:\d+>' => 'unit/<action>',
             ],
         ],
-        */
     ],
     'params' => $params,
 ];

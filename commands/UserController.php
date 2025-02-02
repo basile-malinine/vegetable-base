@@ -2,9 +2,9 @@
 
 namespace app\commands;
 
+use app\models\User\User;
 use Yii;
 use yii\console\Controller;
-use app\models\User;
 
 class UserController extends Controller
 {

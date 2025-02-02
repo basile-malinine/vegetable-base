@@ -2,7 +2,7 @@
 
 namespace tests\unit\models;
 
-use app\models\User;
+use app\models\User\User;
 
 class UserTest extends \Codeception\Test\Unit
 {
@@ -16,7 +16,7 @@ class UserTest extends \Codeception\Test\Unit
 
     public function testFindUserByAccessToken()
     {
-        verify($user = User::findIdentityByAccessToken('100-token'))->notEmpty();
+        verify($user = User\User::findIdentityByAccessToken('100-token'))->notEmpty();
         verify($user->username)->equals('admin');
 
         verify(User::findIdentityByAccessToken('non-existing'))->empty();        
@@ -24,7 +24,7 @@ class UserTest extends \Codeception\Test\Unit
 
     public function testFindUserByUsername()
     {
-        verify($user = User::findByUsername('admin'))->notEmpty();
+        verify($user = User\User::findByUsername('admin'))->notEmpty();
         verify(User::findByUsername('not-admin'))->empty();
     }
 
@@ -33,7 +33,7 @@ class UserTest extends \Codeception\Test\Unit
      */
     public function testValidateUser()
     {
-        $user = User::findByUsername('admin');
+        $user = User\User::findByUsername('admin');
         verify($user->validateAuthKey('test100key'))->notEmpty();
         verify($user->validateAuthKey('test102key'))->empty();
 

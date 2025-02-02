@@ -2,17 +2,15 @@
 
 /** @var yii\web\View $this */
 /** @var yii\bootstrap5\ActiveForm $form */
-
-/** @var app\models\LoginForm $model */
+/** @var \app\models\User\LoginForm $model */
 
 use yii\bootstrap5\ActiveForm;
 use yii\bootstrap5\Html;
 
 $this->title = 'Login';
-$this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="site-login" style="padding-top: 150px">
-    <div class="row">
+    <div class="row login-form">
         <div class="col-lg-4"></div>
         <div class="col-lg-4">
 
@@ -23,6 +21,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     'labelOptions' => ['class' => 'col-lg-5 col-form-label mr-sm-1'],
                     'inputOptions' => ['class' => 'col-lg-3 form-control form-control-sm'],
                     'errorOptions' => ['class' => 'col-lg-7 invalid-feedback'],
+                    'enableClientValidation' => false,
                 ],
             ]); ?>
 
@@ -36,8 +35,13 @@ $this->params['breadcrumbs'][] = $this->title;
 
             <div class="form-group">
                 <div class="d-flex justify-content-end">
-                    <?= Html::submitButton('Войти', ['class' => 'btn btn-primary', 'name' => 'login-button',
-                        'style' => 'width: 100px']) ?>
+                    <?= Html::submitButton(
+                        'Войти',
+                        [
+                            'class' => 'btn btn-light btn-outline-dark btn-sm',
+                            'name' => 'login-button',
+                            'style' => 'width: 100px'
+                        ]) ?>
                 </div>
             </div>
 

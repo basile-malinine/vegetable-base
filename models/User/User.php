@@ -1,6 +1,6 @@
 <?php
 
-namespace app\models;
+namespace app\models\User;
 
 use yii\db\ActiveRecord;
 use yii\web\IdentityInterface;
