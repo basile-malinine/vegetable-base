@@ -2,11 +2,12 @@
 
 /** @var yii\web\View $this */
 /** @var yii\bootstrap5\ActiveForm $form */
-/** @var app\models\Unit $model */
+/** @var \app\models\Unit\Unit $model */
 /** @var string $header */
 
 use yii\bootstrap5\ActiveForm;
 use yii\bootstrap5\Html;
+
 ?>
 
 <div class="entity-list-top-panel">

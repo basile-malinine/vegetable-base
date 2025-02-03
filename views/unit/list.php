@@ -3,7 +3,7 @@
 use yii\grid\GridView;
 
 /** @var yii\web\View $this */
-/** @var app\models\UnitSearch $searchModel */
+/** @var \app\models\Unit\UnitSearch $searchModel */
 /** @var yii\data\ActiveDataProvider $dataProvider */
 /** @var string $header */
 

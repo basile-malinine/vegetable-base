@@ -2,14 +2,11 @@
 
 namespace app\controllers;
 
-use app\models\Unit;
-use app\models\UnitSearch;
+use app\models\Unit\Unit;
+use app\models\Unit\UnitSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 
-/**
- * UnitController implements the CRUD actions for Unit model.
- */
 class UnitController extends Controller
 {
 /*    public function behaviors()
@@ -22,9 +19,7 @@ class UnitController extends Controller
         $dataProvider = $searchModel->search($this->request->queryParams);
         $header = 'Единицы измерения';
 
-        return $this->render('list',
-            compact(['searchModel', 'dataProvider', 'header'])
-        );
+        return $this->render('list', compact(['searchModel', 'dataProvider', 'header']));
     }
 
     public function actionCreate()
@@ -32,13 +27,8 @@ class UnitController extends Controller
         $model = new Unit();
         $header = 'Единица измерения (новая)';
 
-        if ($this->request->isPost && $model->load($this->request->post())) {
-            if ($model->validate()) {
-                $model->save();
-                $this->redirect(['/unit/index']);
-            } else {
-                return $this->render('create', compact('model', 'header'));
-            }
+        if ($this->request->isPost) {
+            $this->postRequestAnalysis($model, $header);
         } else {
             $model->loadDefaultValues();
         }
@@ -51,13 +41,11 @@ class UnitController extends Controller
         $model = $this->findModel($id);
         $header = 'Единица измерения ' . $model->name;
 
-        if ($this->request->isPost && $model->load($this->request->post())) {
-            if ($model->validate()) {
-                $model->save();
-                $this->redirect(['/unit/index']);
+        if ($this->request->isPost) {
+            $this->postRequestAnalysis($model, $header);
             } else {
-                return $this->render('create', compact('model', 'header'));
-            }
+
+            return $this->render('edit', compact('model', 'header'));
         }
 
         return $this->render('edit',
@@ -79,5 +67,18 @@ class UnitController extends Controller
         }
 
         throw new NotFoundHttpException('The requested page does not exist.');
+    }
+
+    // Обработка POST-запроса
+    private function postRequestAnalysis($model, $header)
+    {
+        if ($model->load($this->request->post())) {
+            if ($model->validate()) {
+                $model->save();
+                $this->redirect(['/unit/index']);
+            } else {
+                return $this->render('create', compact('model', 'header'));
+            }
+        }
     }
 }
