@@ -26,4 +26,13 @@ class Unit extends ActiveRecord
             'name' => 'Наименование',
         ];
     }
+
+    public static function getList()
+    {
+        return self::find()
+            ->select(['name', 'id'])
+            ->indexBy('id')
+            ->orderBy(['name' => SORT_ASC])
+            ->column();
+    }
 }

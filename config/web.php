@@ -52,7 +52,11 @@ $config = [
             'showScriptName' => false,
 
             'rules' => [
+                // UnitController Единицы измерения
                 'unit/<action:(edit|delete)>/<id:\d+>' => 'unit/<action>',
+
+                // Product Продукты
+                'product/<action:(edit|delete)>/<id:\d+>' => 'product/<action>',
             ],
         ],
     ],

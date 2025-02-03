@@ -10,7 +10,11 @@ echo Nav::widget([
                 [
                     'label' => 'Единицы измерения',
                     'url' => ['/unit/index'],
-                ]
+                ],
+                [
+                    'label' => 'Продукты',
+                    'url' => ['/product/index'],
+                ],
             ],
         ],
     ]
