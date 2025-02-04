@@ -1,3 +1,27 @@
+a {
+    color: #315d76;
+}
+
+a:hover, a:focus {
+    color: #ce7415;
+}
+
+.navbar-default {
+    background-color: #fff;
+}
+
+.navbar-default .navbar-brand {
+    color: #444;
+}
+
+.navbar-brand {
+    padding: 0;
+}
+
+.navbar-brand > img {
+    height: 40px;
+}
+
 label {
     font-size: 12px;
 }
