@@ -16,7 +16,7 @@ $this->registerJsFile('@web/js/product.js');
     <div class="entity-list-top-panel">
         <div class="entity-list-header">
             <?= $header ?>
-            <a href="/product/create" class="btn btn-light btn-outline-dark btn-sm ms-5 pe-3">
+            <a href="/product/create" class="btn btn-light btn-outline-secondary btn-sm ms-5 pe-3">
                 <i class="fa fa-plus"></i>
                 <span class="ms-2">Добавить</span>
             </a>
@@ -35,14 +35,20 @@ $this->registerJsFile('@web/js/product.js');
 
         'columns' => [
             [
-                'class' => 'yii\grid\SerialColumn',
-                'header' => '№ п/п',
-                'headerOptions' => [
-                    'style' => 'text-align: center; width: 70px;'
-                ],
+                'format' => 'raw',
+                'value' => function ($model) {
+                    return $model->unit->is_weight ? '<i class="fas fa-balance-scale"></i>' : '';
+                },
                 'contentOptions' => [
-                    'style' => 'text-align: center;'
-                ]
+                    'style' => 'width: 20px; color: #0077ff; text-align: center',
+                ],
+            ],
+
+            [
+                'attribute' => 'id',
+                'contentOptions' => [
+                    'style' => 'text-align: right; width: 50px;'
+                ],
             ],
 
             // Наименование
@@ -62,7 +68,7 @@ $this->registerJsFile('@web/js/product.js');
                     return $model->unit->name;
                 },
                 'contentOptions' => [
-                    'style' => 'width: 70px;'
+                    'style' => 'width: 70px;',
                 ],
             ],
 
@@ -71,7 +77,7 @@ $this->registerJsFile('@web/js/product.js');
                 'attribute' => 'weight',
                 'enableSorting' => false,
                 'contentOptions' => [
-                    'style' => 'width: 100px;'
+                    'style' => 'width: 100px; text-align: right;',
                 ],
                 'value' => function ($model) {
                     return $model->weight ?: '';
@@ -80,12 +86,14 @@ $this->registerJsFile('@web/js/product.js');
 
             // Пустота
             [
-                'value' => function ($model) { return ''; },
+                'value' => function ($model) {
+                    return '';
+                },
             ],
         ],
 
         'tableOptions' => [
-            'class' => 'table table-condensed table-striped table-bordered table-hover mt-1'
+            'class' => 'table table-condensed table-striped table-bordered table-hover mt-2'
         ],
     ]); ?>
 

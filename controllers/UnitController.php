@@ -39,7 +39,7 @@ class UnitController extends Controller
     public function actionEdit($id)
     {
         $model = $this->findModel($id);
-        $header = 'Единица измерения ' . $model->name;
+        $header = 'Единица измерения [' . $model->name . ']';
 
         if ($this->request->isPost) {
             $this->postRequestAnalysis($model, $header);

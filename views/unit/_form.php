@@ -3,6 +3,7 @@
 /** @var yii\web\View $this */
 /** @var yii\bootstrap5\ActiveForm $form */
 /** @var \app\models\Unit\Unit $model */
+
 /** @var string $header */
 
 use yii\bootstrap5\ActiveForm;
@@ -18,20 +19,21 @@ use yii\bootstrap5\Html;
 
 <div class="entity-content">
     <div class="row entity-unit-form">
-<!--        <div class="col-lg-3">-->
 
-            <?php $form = ActiveForm::begin([
-                'id' => 'entity-unit-form',
-                'fieldConfig' => [
-                    'template' => "{label}\n{input}\n{error}",
-                    'labelOptions' => ['class' => 'col-lg-5 col-form-label mr-sm-1'],
-                    'inputOptions' => ['class' => 'col-lg-3 form-control form-control-sm'],
-                    'errorOptions' => ['class' => 'col-lg-7 invalid-feedback'],
-                    'enableClientValidation' => false,
-                ],
-            ]); ?>
+        <?php $form = ActiveForm::begin([
+            'id' => 'entity-unit-form',
+            'fieldConfig' => [
+                'template' => "{label}\n{input}\n{error}",
+                'labelOptions' => ['class' => 'col-form-label pt-0'],
+                'inputOptions' => ['class' => 'form-control form-control-sm'],
+                'errorOptions' => ['class' => 'invalid-feedback'],
+                'enableClientValidation' => false,
+            ],
+        ]); ?>
 
-            <div class="entity-form-content col-2 mb-4">
+        <div class="row form-last-row">
+            <!-- Наименование -->
+            <div class="entity-form-content col-2">
                 <?= $form->field($model, 'name')->textInput(
                     [
                         'maxlength' => true,
@@ -39,13 +41,36 @@ use yii\bootstrap5\Html;
                 ) ?>
             </div>
 
-            <div class="form-group">
-                <?= Html::submitButton('Сохранить', ['class' => 'btn btn-light btn-outline-dark btn-sm me-2']) ?>
-                <?= Html::a('Отмена', '/unit/index', ['class' => 'btn btn-light btn-outline-dark btn-sm']) ?>
+            <!-- Весовая -->
+            <div class="entity-form-content col-1">
+                <?= $form->field($model, 'is_weight')->dropDownList(
+                        [0 => 'Нет', 1 => 'Да'],
+                    [
+                            'onchange' => '
+                                if ($(this).val() == 1) {
+                                    $("#unit-weight").attr("readonly", false);
+                                } else {
+                                    $("#unit-weight").val("");
+                                    $("#unit-weight").attr("readonly", true);
+                                }',
+                    ]
+                ) ?>
             </div>
 
-            <?php ActiveForm::end(); ?>
+            <!-- Вес -->
+            <div class="entity-form-content col-2">
+                <?= $form->field($model, 'weight')->textInput([
+                        'readonly' => !(bool)$model->is_weight,
+                ]) ?>
+            </div>
+        </div>
 
-<!--        </div>-->
+        <div class="form-group">
+            <?= Html::submitButton('Сохранить', ['class' => 'btn btn-light btn-outline-secondary btn-sm me-2']) ?>
+            <?= Html::a('Отмена', '/unit/index', ['class' => 'btn btn-light btn-outline-secondary btn-sm']) ?>
+        </div>
+
+        <?php ActiveForm::end(); ?>
+
     </div>
 </div>

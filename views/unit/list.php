@@ -15,11 +15,11 @@ $this->registerJsFile('@web/js/unit.js');
 
     <div class="entity-list-top-panel">
         <div class="entity-list-header">
-                <?= $header ?>
-                <a href="/unit/create" class="btn btn-light btn-outline-dark btn-sm ms-5 pe-3">
-                    <i class="fa fa-plus"></i>
-                    <span class="ms-2">Добавить</span>
-                </a>
+            <?= $header ?>
+            <a href="/unit/create" class="btn btn-light btn-outline-secondary btn-sm ms-5 pe-3">
+                <i class="fa fa-plus"></i>
+                <span class="ms-2">Добавить</span>
+            </a>
         </div>
     </div>
 
@@ -34,27 +34,47 @@ $this->registerJsFile('@web/js/unit.js');
         },
 
         'columns' => [
+            // ID
             [
-                'class' => 'yii\grid\SerialColumn',
-                'header' => '№ п/п',
-                'headerOptions' => [
-                    'style' => 'text-align: center; width: 70px;'
-                ],
+                'attribute' => 'id',
+                'enableSorting' => false,
                 'contentOptions' => [
-                    'style' => 'text-align: center;'
-                ]
+                    'style' => 'text-align: right; width: 50px;'
+                ],
             ],
 
+            // Имя
             [
                 'attribute' => 'name',
                 'enableSorting' => false,
+                'contentOptions' => [
+                    'style' => 'width: 120px;'
+                ],
+            ],
+
+            // Вес
+            [
+                'attribute' => 'weight',
+                'enableSorting' => false,
+                'contentOptions' => [
+                    'style' => 'width: 100px; text-align: right;'
+                ],
+                'value' => function ($model) {
+                    return $model->weight ?: '';
+                },
+            ],
+
+            // Пустота
+            [
+                'value' => function ($model) {
+                    return '';
+                },
             ],
         ],
 
         'tableOptions' => [
-            'class' => 'table table-condensed table-striped table-bordered table-hover mt-1'
+            'class' => 'table table-condensed table-striped table-bordered table-hover mt-2'
         ],
     ]); ?>
-
 
 </div>

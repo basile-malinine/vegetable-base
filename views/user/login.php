@@ -38,7 +38,7 @@ $this->title = 'Login';
                     <?= Html::submitButton(
                         'Войти',
                         [
-                            'class' => 'btn btn-light btn-outline-dark btn-sm',
+                            'class' => 'btn btn-light btn-outline-secondary btn-sm',
                             'name' => 'login-button',
                             'style' => 'width: 100px'
                         ]) ?>

@@ -60,7 +60,7 @@ class UnitSearch extends Unit
             'id' => $this->id,
         ]);
 
-        $query->andFilterWhere(['like', 'name', $this->name]);
+        $query->orderBy('name');
 
         return $dataProvider;
     }

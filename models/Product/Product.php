@@ -18,7 +18,7 @@ class Product extends ActiveRecord
             [['name', 'unit_id'], 'required'],
             [['unit_id'], 'integer'],
             [['name'], 'string', 'max' => 100],
-            [['weight'], 'number', 'numberPattern' => '/^\d+(.\d{3})?$/'],
+            [['weight'], 'number', 'numberPattern' => '/^\d+(.\d+)?$/'],
         ];
     }
 
@@ -31,6 +31,16 @@ class Product extends ActiveRecord
             'weight' => 'Вес (кг)',
         ];
     }
+
+//    public function beforeSave($insert)
+//    {
+//        if (!parent::beforeSave($insert)) {
+//            return false;
+//        }
+//        $this->weight = str_replace(',', '.', $this->weight);
+//
+//        return true;
+//    }
 
     public function getUnit()
     {

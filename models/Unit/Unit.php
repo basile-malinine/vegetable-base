@@ -17,14 +17,31 @@ class Unit extends ActiveRecord
             [['name'], 'required'],
             [['name'], 'unique'],
             [['name'], 'string', 'max' => 12],
+            [['is_weight'], 'integer'],
+            [['weight'], 'number', 'numberPattern' => '/^\d+(.\d+)?$/', 'min' => 0.001],
+            [['weight'], 'required', 'when' => function ($model) {
+                return $model->is_weight;
+            }],
         ];
     }
 
     public function attributeLabels()
     {
         return [
-            'name' => 'Наименование',
+            'name' => 'Имя',
+            'is_weight' => 'Весовая',
+            'weight' => 'Вес (кг)',
         ];
+    }
+
+    public function beforeSave($insert)
+    {
+        if (!parent::beforeSave($insert)) {
+            return false;
+        }
+        $this->weight = str_replace(',', '.', $this->weight);
+
+        return true;
     }
 
     public static function getList()

@@ -91,3 +91,19 @@ a.desc:after {
 .contextMenuRow {
     cursor: pointer;
 }
+
+.form-content-row {
+    margin-bottom: -10px;
+}
+
+.form-last-row {
+    margin-bottom: 29px;
+    border-bottom: 1px solid #e1e3e1;
+}
+
+.bootstrap-select > .dropdown-toggle,
+.bootstrap-select > .dropdown-toggle:hover,
+.bootstrap-select > .dropdown-toggle:focus,
+.bootstrap-select > .dropdown-toggle:active {
+    color: darkgray;
+}

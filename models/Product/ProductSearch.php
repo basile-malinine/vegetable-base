@@ -7,6 +7,14 @@ use yii\data\ActiveDataProvider;
 
 class ProductSearch extends Product
 {
+    public function rules()
+    {
+        return [
+            [['id'], 'integer'],
+            [['name'], 'safe'],
+        ];
+    }
+
     public function scenarios()
     {
         // bypass scenarios() implementation in the parent class
@@ -45,6 +53,8 @@ class ProductSearch extends Product
         ]);
 
         $query->andFilterWhere(['like', 'name', $this->name]);
+
+        $query->orderBy('name');
 
         return $dataProvider;
     }

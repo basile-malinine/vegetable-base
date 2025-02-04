@@ -1,17 +1,10 @@
 a {
     color: #315d76;
+    text-decoration: none;
 }
 
 a:hover, a:focus {
-    color: #ce7415;
-}
-
-.navbar-default {
-    background-color: #fff;
-}
-
-.navbar-default .navbar-brand {
-    color: #444;
+    color: #3d75f3;
 }
 
 .navbar-brand {
@@ -75,6 +68,12 @@ label {
     font-weight: bold;
 }
 
+.table > tbody > tr > th,
+.table > tfoot > tr > th,
+.table > thead > tr > th {
+    text-align: center;
+}
+
 .table > tbody > tr > td,
 .table > tbody > tr > th,
 .table > tfoot > tr > td,
@@ -82,17 +81,50 @@ label {
 .table > thead > tr > td,
 .table > thead > tr > th {
     vertical-align: middle !important;
-    padding: 5px;
+    padding: 5px 7px 5px 7px;
+}
+
+.table > thead > tr > th {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.table > thead > tr > th {
+    color: #888888;
+}
+
+.table > thead > tr > th > a {
+    color: #3b36e6;
+}
+
+.table > thead > tr > th > a:hover,
+.table > thead > tr > th > a:focus {
+    color: #00bad6;
 }
 
 /* выпадающее меню -------------------------------------------------------------------------------------------- */
 
+.dropdown-item {
+    font-size: 14px;
+}
+
+.dropdown-item.active {
+    background-color: #ffffff;
+    color: #212529;
+}
+
+.dropdown-item:hover,
+.dropdown-item:focus {
+    background-color: #eaeaea;
+    color: #212529;
+}
+
 .dropdown-menu {
-    border-radius: 0;
+    border-radius: 3px;
     font-size: 12px;
 }
 
-.dropdown-menu[data-bs-popper] {
+.navbar-nav.ms-auto > li > .dropdown-menu {
     left: auto;
     right: 0;
 }
@@ -165,8 +197,15 @@ label {
     margin-left: 10px;
 }
 
-.form-control:focus {
+.form-control:focus,
+.form-select:focus {
     border-color: #3161f6;
     -webkit-box-shadow: none;
     box-shadow: none;
+}
+
+.form-select {
+    height: 31px;
+    padding: 0 0 4px 15px;
+    border-radius: 3px;
 }
