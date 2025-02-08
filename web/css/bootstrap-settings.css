@@ -209,3 +209,29 @@ label {
     padding: 0 0 4px 15px;
     border-radius: 3px;
 }
+
+.col-form-label {
+    padding-top: 0;
+}
+
+.form-check-input.form-check-input {  /* Почему-то срабатывает, когда два раза ???*/
+    width: 21px;
+    height: 21px;
+    border-radius: 3px;
+    -webkit-box-shadow: none;
+}
+
+.form-check-label {
+    padding: 2px 0 0 7px;
+    font-size: 16px;
+}
+
+/*
+*     Фон меняется, картинка - нет (!important не помогает...)!!!
+*/
+.form-check-input:checked {
+    background-color: gray;
+    /*background-image: url("/web/images/bootstrap-settings/checkbox-checked.png");*/
+}
+/*
+*/

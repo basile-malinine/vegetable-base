@@ -10,11 +10,11 @@ use yii\grid\GridView;
 $this->registerJsFile('@web/js/unit.js');
 
 ?>
-<div class="entity-content">
+<div class="page-content">
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
-    <div class="entity-list-top-panel">
-        <div class="entity-list-header">
+    <div class="page-top-panel">
+        <div class="page-top-panel-header">
             <?= $header ?>
             <a href="/unit/create" class="btn btn-light btn-outline-secondary btn-sm ms-5 pe-3">
                 <i class="fa fa-plus"></i>

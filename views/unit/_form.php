@@ -11,17 +11,17 @@ use yii\bootstrap5\Html;
 
 ?>
 
-<div class="entity-list-top-panel">
-    <div class="entity-list-header d-inline">
+<div class="page-top-panel">
+    <div class="page-top-panel-header d-inline">
         <?= $header ?>
     </div>
 </div>
 
-<div class="entity-content">
-    <div class="row entity-unit-form">
+<div class="page-content">
+    <div class="page-content-form">
 
         <?php $form = ActiveForm::begin([
-            'id' => 'entity-unit-form',
+            'id' => 'page-content-form',
             'fieldConfig' => [
                 'template' => "{label}\n{input}\n{error}",
                 'labelOptions' => ['class' => 'col-form-label pt-0'],
@@ -33,7 +33,7 @@ use yii\bootstrap5\Html;
 
         <div class="row form-last-row">
             <!-- Наименование -->
-            <div class="entity-form-content col-2">
+            <div class="form-col col-2">
                 <?= $form->field($model, 'name')->textInput(
                     [
                         'maxlength' => true,
@@ -42,7 +42,7 @@ use yii\bootstrap5\Html;
             </div>
 
             <!-- Весовая -->
-            <div class="entity-form-content col-1">
+            <div class="form-col col-1">
                 <?= $form->field($model, 'is_weight')->dropDownList(
                         [0 => 'Нет', 1 => 'Да'],
                     [
@@ -58,7 +58,7 @@ use yii\bootstrap5\Html;
             </div>
 
             <!-- Вес -->
-            <div class="entity-form-content col-2">
+            <div class="form-col col-2">
                 <?= $form->field($model, 'weight')->textInput([
                         'readonly' => !(bool)$model->is_weight,
                 ]) ?>

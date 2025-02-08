@@ -20,17 +20,17 @@ $unitDefault = array_keys($unitList)[0];
 $weightDefault = Unit::findOne($unitDefault)->weight;
 ?>
 
-<div class="entity-list-top-panel">
-    <div class="entity-list-header d-inline">
+<div class="page-top-panel">
+    <div class="page-top-panel-header d-inline">
         <?= $header ?>
     </div>
 </div>
 
-<div class="entity-content">
-    <div class="entity-unit-form">
+<div class="page-content">
+    <div class="page-content-form">
 
         <?php $form = ActiveForm::begin([
-            'id' => 'entity-unit-form',
+            'id' => 'page-content-form',
             'fieldConfig' => [
                 'template' => "{label}\n{input}\n{error}",
                 'labelOptions' => ['class' => 'col-form-label pt-0'],
@@ -40,9 +40,9 @@ $weightDefault = Unit::findOne($unitDefault)->weight;
             ],
         ]); ?>
 
-        <div class="row form-content-row">
+        <div class="row form-row">
             <!-- Наименование -->
-            <div class="entity-form-content col-5">
+            <div class="form-col col-5">
                 <?= $form->field($model, 'name')->textInput([
                     'maxlength' => true,
                 ]) ?>
@@ -51,7 +51,7 @@ $weightDefault = Unit::findOne($unitDefault)->weight;
 
         <div class="row form-last-row">
             <!-- Ед. изм. -->
-            <div class="entity-form-content col-2">
+            <div class="form-col col-2">
                 <?= $form->field($model, 'unit_id')->dropDownList(Unit::getList(), [
                     'onchange' => '
                         let weights = ' . json_encode(
@@ -70,7 +70,7 @@ $weightDefault = Unit::findOne($unitDefault)->weight;
             </div>
 
             <!-- Вес -->
-            <div class="entity-form-content col-2">
+            <div class="form-col col-2">
                 <?= $form->field($model, 'weight')->textInput([
                     'readonly' => $action === 'create'
                         ? (bool)$weightDefault

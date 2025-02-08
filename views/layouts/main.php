@@ -41,7 +41,9 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
         'options' => ['class' => 'navbar navbar-expand-md navbar-light bg-light fixed-top']
     ]);
 
-    echo $this->render('menu');
+    if (!Yii::$app->user->isGuest) {
+        echo $this->render('menu');
+    }
 
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav ms-auto'],

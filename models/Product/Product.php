@@ -32,15 +32,15 @@ class Product extends ActiveRecord
         ];
     }
 
-//    public function beforeSave($insert)
-//    {
-//        if (!parent::beforeSave($insert)) {
-//            return false;
-//        }
-//        $this->weight = str_replace(',', '.', $this->weight);
-//
-//        return true;
-//    }
+    public function beforeSave($insert)
+    {
+        if (!parent::beforeSave($insert)) {
+            return false;
+        }
+        $this->weight = str_replace(',', '.', $this->weight);
+
+        return true;
+    }
 
     public function getUnit()
     {

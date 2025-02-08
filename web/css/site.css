@@ -71,18 +71,18 @@ a.desc:after {
 
 /* -------------------------------------- */
 
-.entity-list-top-panel
+.page-top-panel
 {
     margin-bottom: 5px;
     padding: 0 0 18px 0;
     border-bottom: 1px solid #E1E3E1;
 }
 
-.entity-list-header {
+.page-top-panel-header {
     font-size: x-large;
 }
 
-.entity-list-header a {
+.page-top-panel-header a {
     margin-top: -4px;
 }
 
@@ -92,18 +92,11 @@ a.desc:after {
     cursor: pointer;
 }
 
-.form-content-row {
+.form-row {
     margin-bottom: -10px;
 }
 
 .form-last-row {
     margin-bottom: 29px;
     border-bottom: 1px solid #e1e3e1;
-}
-
-.bootstrap-select > .dropdown-toggle,
-.bootstrap-select > .dropdown-toggle:hover,
-.bootstrap-select > .dropdown-toggle:focus,
-.bootstrap-select > .dropdown-toggle:active {
-    color: darkgray;
 }
