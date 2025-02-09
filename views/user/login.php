@@ -25,9 +25,9 @@ $this->title = 'Login';
         ]); ?>
 
         <div class="row form-row">
-            <!-- Логин-->
+            <!-- Адрес электронной почты -->
             <div class="form-col col-4">
-                <?= $form->field($model, 'username')->textInput(['autofocus' => true]) ?>
+                <?= $form->field($model, 'email')->textInput(['autofocus' => true]) ?>
             </div>
         </div>
 
