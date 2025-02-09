@@ -4,24 +4,24 @@ namespace app\controllers;
 
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
-use app\models\Product\Product;
-use app\models\Product\ProductSearch;
+use app\models\LegalSubject\LegalSubject;
+use app\models\LegalSubject\LegalSubjectSearch;
 
-class ProductController extends Controller
+class LegalSubjectController extends Controller
 {
     public function actionIndex(): string
     {
-        $searchModel = new ProductSearch();
+        $searchModel = new LegalSubjectSearch();
         $dataProvider = $searchModel->search($this->request->queryParams);
-        $header = 'Продукты';
+        $header = 'Юридические / физические лица';
 
         return $this->render('list', compact(['searchModel', 'dataProvider', 'header']));
     }
 
     public function actionCreate()
     {
-        $model = new Product();
-        $header = 'Продукт (новый)';
+        $model = new LegalSubject();
+        $header = 'Юридическое / физическое лицо (новое)';
 
         if ($this->request->isPost) {
             $this->postRequestAnalysis($model);
@@ -35,7 +35,7 @@ class ProductController extends Controller
     public function actionEdit($id)
     {
         $model = $this->findModel($id);
-        $header = 'Продукт [' . $model->name . ']';
+        $header = 'Юридическое / физическое лицо [' . $model->name . ']';
 
         if ($this->request->isPost) {
             $this->postRequestAnalysis($model);
@@ -53,7 +53,7 @@ class ProductController extends Controller
 
     protected function findModel($id)
     {
-        if (($model = Product::findOne(['id' => $id])) !== null) {
+        if (($model = LegalSubject::findOne(['id' => $id])) !== null) {
             return $model;
         }
 
@@ -66,7 +66,7 @@ class ProductController extends Controller
         if ($model->load($this->request->post())) {
             if ($model->validate()) {
                 $model->save();
-                $this->redirect(['/product/index']);
+                $this->redirect(['/legal-subject/index']);
             }
         }
     }

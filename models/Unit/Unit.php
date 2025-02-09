@@ -28,6 +28,7 @@ class Unit extends ActiveRecord
     public function attributeLabels()
     {
         return [
+            'id' => 'ID',
             'name' => 'Имя',
             'is_weight' => 'Весовая',
             'weight' => 'Вес (кг)',

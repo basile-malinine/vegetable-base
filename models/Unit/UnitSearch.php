@@ -39,7 +39,7 @@ class UnitSearch extends Unit
      */
     public function search($params)
     {
-        $query = \app\models\Unit\Unit::find();
+        $query = Unit::find();
 
         // add conditions that should always apply here
 

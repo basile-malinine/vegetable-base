@@ -25,6 +25,7 @@ $this->registerJsFile('@web/js/product.js');
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
+        'filterModel' => $searchModel,
 
         'rowOptions' => function ($model, $key, $index, $grid) {
             return [
@@ -34,21 +35,27 @@ $this->registerJsFile('@web/js/product.js');
         },
 
         'columns' => [
+            // Весовой / не весовой (иконка)
             [
                 'format' => 'raw',
                 'value' => function ($model) {
                     return $model->unit->is_weight ? '<i class="fas fa-balance-scale"></i>' : '';
                 },
                 'contentOptions' => [
-                    'style' => 'width: 20px; color: #0077ff; text-align: center',
+                    'style' => 'color: #0077ff; text-align: center',
+                ],
+                'headerOptions' => [
+                    'style' => 'width: 30px;',
                 ],
             ],
 
+            // ID
             [
                 'attribute' => 'id',
                 'contentOptions' => [
                     'style' => 'text-align: right; width: 50px;'
                 ],
+                'filter' => false,
             ],
 
             // Наименование
@@ -57,6 +64,9 @@ $this->registerJsFile('@web/js/product.js');
                 'enableSorting' => true,
                 'contentOptions' => [
                     'style' => 'width: 350px;'
+                ],
+                'filterInputOptions' => [
+                    'class' => 'form-control form-control-sm'
                 ],
             ],
 

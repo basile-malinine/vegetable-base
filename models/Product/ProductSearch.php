@@ -54,7 +54,7 @@ class ProductSearch extends Product
 
         $query->andFilterWhere(['like', 'name', $this->name]);
 
-        $query->orderBy('name');
+//        $query->orderBy('name');
 
         return $dataProvider;
     }

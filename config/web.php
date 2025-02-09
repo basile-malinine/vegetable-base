@@ -55,8 +55,11 @@ $config = [
                 // UnitController Единицы измерения
                 'unit/<action:(edit|delete)>/<id:\d+>' => 'unit/<action>',
 
-                // Product Продукты
+                // ProductController Продукты
                 'product/<action:(edit|delete)>/<id:\d+>' => 'product/<action>',
+
+                // LegalSubjectController Продукты
+                'legal-subject/<action:(edit|delete)>/<id:\d+>' => 'legal-subject/<action>',
             ],
         ],
     ],

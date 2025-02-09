@@ -16,6 +16,11 @@ echo Nav::widget([
                     'label' => 'Единицы измерения',
                     'url' => ['/unit/index'],
                 ],
+
+                [
+                    'label' => 'Юридические / Физические лица',
+                    'url' => ['/legal-subject/index'],
+                ],
             ],
         ],
     ]

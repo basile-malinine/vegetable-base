@@ -1,22 +1,21 @@
 <?php
 
 use yii\grid\GridView;
+use app\models\LegalSubject\LegalSubjectSearch;
 
-/** @var yii\web\View $this */
-/** @var \app\models\Unit\UnitSearch $searchModel */
 /** @var yii\data\ActiveDataProvider $dataProvider */
+/** @var yii\web\View $this */
+/** @var LegalSubjectSearch $searchModel */
 /** @var string $header */
 
-$this->registerJsFile('@web/js/unit.js');
+$this->registerJsFile('@web/js/legal-subject.js');
 
 ?>
 <div class="page-content">
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
-
     <div class="page-top-panel">
         <div class="page-top-panel-header">
             <?= $header ?>
-            <a href="/unit/create" class="btn btn-light btn-outline-secondary btn-sm ms-5 pe-3">
+            <a href="/legal-subject/create" class="btn btn-light btn-outline-secondary btn-sm ms-5 pe-3">
                 <i class="fa fa-plus"></i>
                 <span class="ms-2">Добавить</span>
             </a>
@@ -25,6 +24,7 @@ $this->registerJsFile('@web/js/unit.js');
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
+        'filterModel' => $searchModel,
 
         'rowOptions' => function ($model, $key, $index, $grid) {
             return [
@@ -34,48 +34,56 @@ $this->registerJsFile('@web/js/unit.js');
         },
 
         'columns' => [
-            // Весовой / не весовой (иконка)
+            // Юридическое / физическое (иконка)
             [
                 'format' => 'raw',
                 'value' => function ($model) {
-                    return $model->is_weight ? '<i class="fas fa-balance-scale"></i>' : '';
+                    return !$model->is_legal ? '<i class="fas fa-user"></i>' : '';
                 },
                 'contentOptions' => [
                     'style' => 'color: #0077ff; text-align: center',
                 ],
                 'headerOptions' => [
-                    'style' => 'width: 30px;',
+                    'style' => 'width: 30px',
                 ],
             ],
 
             // ID
             [
                 'attribute' => 'id',
-                'enableSorting' => false,
                 'contentOptions' => [
-                    'style' => 'text-align: right; width: 50px;'
+                    'style' => 'text-align: right;'
+                ],
+                'headerOptions' => [
+                    'style' => 'width: 50px;'
                 ],
             ],
 
-            // Имя
+            // Название или ФИО
             [
                 'attribute' => 'name',
-                'enableSorting' => false,
-                'contentOptions' => [
-                    'style' => 'width: 120px;'
+                'enableSorting' => true,
+                'headerOptions' => [
+                    'style' => 'width: 420px;'
+                ],
+                'filterInputOptions' => [
+                    'class' => 'form-control form-control-sm',
                 ],
             ],
 
-            // Вес
+            // ИНН
             [
-                'attribute' => 'weight',
+                'attribute' => 'inn',
                 'enableSorting' => false,
-                'contentOptions' => [
-                    'style' => 'width: 100px; text-align: right;'
-                ],
                 'value' => function ($model) {
-                    return $model->weight ?: '';
+                    return $model->inn ?: '';
                 },
+                'headerOptions' => [
+                    'style' => 'width: 100px;'
+                ],
+                'filterInputOptions' => [
+                    'class' => 'form-control form-control-sm',
+                ],
             ],
 
             // Пустота

@@ -2,17 +2,13 @@
 
 namespace app\controllers;
 
-use app\models\Unit\Unit;
-use app\models\Unit\UnitSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
+use app\models\Unit\Unit;
+use app\models\Unit\UnitSearch;
 
 class UnitController extends Controller
 {
-/*    public function behaviors()
-    {
-    }
-*/
     public function actionIndex(): string
     {
         $searchModel = new UnitSearch();
@@ -28,7 +24,7 @@ class UnitController extends Controller
         $header = 'Единица измерения (новая)';
 
         if ($this->request->isPost) {
-            $this->postRequestAnalysis($model, $header);
+            $this->postRequestAnalysis($model);
         } else {
             $model->loadDefaultValues();
         }
@@ -42,15 +38,10 @@ class UnitController extends Controller
         $header = 'Единица измерения [' . $model->name . ']';
 
         if ($this->request->isPost) {
-            $this->postRequestAnalysis($model, $header);
-            } else {
-
-            return $this->render('edit', compact('model', 'header'));
+            $this->postRequestAnalysis($model);
         }
 
-        return $this->render('edit',
-           compact('model', 'header')
-        );
+        return $this->render('edit', compact('model', 'header'));
     }
 
     public function actionDelete($id)
@@ -70,14 +61,12 @@ class UnitController extends Controller
     }
 
     // Обработка POST-запроса
-    private function postRequestAnalysis($model, $header)
+    private function postRequestAnalysis($model): void
     {
         if ($model->load($this->request->post())) {
             if ($model->validate()) {
                 $model->save();
                 $this->redirect(['/unit/index']);
-            } else {
-                return $this->render('create', compact('model', 'header'));
             }
         }
     }
