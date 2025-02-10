@@ -6,6 +6,7 @@
 
 /** @var string $header */
 
+use kartik\select2\Select2;
 use yii\bootstrap5\ActiveForm;
 use yii\bootstrap5\Html;
 
@@ -43,24 +44,25 @@ use yii\bootstrap5\Html;
 
             <!-- Весовая -->
             <div class="form-col col-1">
-                <?= $form->field($model, 'is_weight')->dropDownList(
-                        [0 => 'Нет', 1 => 'Да'],
-                    [
-                            'onchange' => '
-                                if ($(this).val() == 1) {
-                                    $("#unit-weight").attr("readonly", false);
-                                } else {
-                                    $("#unit-weight").val("");
-                                    $("#unit-weight").attr("readonly", true);
-                                }',
+                <?= $form->field($model, 'is_weight')->widget(Select2::class, [
+                    'data' => [0 => 'Нет', 1 => 'Да'],
+                    'hideSearch' => true,
+                    'options' => [
+                        'onchange' => '
+                            if ($(this).val() == 1) {
+                                $("#unit-weight").attr("readonly", false);
+                            } else {
+                                $("#unit-weight").val("");
+                                $("#unit-weight").attr("readonly", true);
+                            }',
                     ]
-                ) ?>
+                ]); ?>
             </div>
 
             <!-- Вес -->
             <div class="form-col col-2">
                 <?= $form->field($model, 'weight')->textInput([
-                        'readonly' => !(bool)$model->is_weight,
+                    'readonly' => !(bool)$model->is_weight,
                 ]) ?>
             </div>
         </div>

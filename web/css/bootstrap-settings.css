@@ -229,3 +229,90 @@ label {
 }
 /*
 */
+
+/* widget krajee-bs5 select-2 ------------------------------------------------------------------------------------- */
+
+.select2-container > .selection > .select2-selection--single,
+/*.select2-container > .selection > .select2-selection--multiple,*/
+.select2-search__field {
+    height: 31px;
+    padding-top: 4px;
+    border-radius: 3px;
+    font-size: 14px;
+    border-color: #dee2e6;
+    box-shadow: none !important;
+}
+
+.select2-container > .selection > .select2-selection:focus {
+    border-color: #3161f6;
+    box-shadow: none !important;
+}
+
+.select2-container > .select2-dropdown {
+    box-shadow: none !important;
+}
+
+.select2-results {
+    font-size: 14px;
+}
+
+/*
+
+.select2-container--krajee-bs5 .select2-selection__clear {
+    color: #315d76;
+    opacity: 1;
+    cursor: pointer;
+}
+
+.select2-container--krajee-bs5 .select2-selection {
+    border-color: #a0a0a0;
+}
+
+.select2-dropdown {
+    border-radius: 0;
+}
+
+.s2-togall-button {
+    color: #315d76;
+}
+
+.select2-container--krajee-bs5 .select2-dropdown {
+    border-color: #315d76;
+}
+
+.select2-container--krajee-bs5 .select2-results__option--highlighted[aria-selected] {
+    background-color: #315d76;
+}
+
+.select2-container--krajee-bs5 .select2-results__option[aria-selected=true] {
+    color: #333333;
+    background-color: #eaeaea;
+}
+
+.select2-container--krajee-bs5.select2-container--open .select2-selection,
+.select2-container--krajee-bs5 .select2-selection:focus {
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    -webkit-transition: none;
+    -o-transition: none;
+    transition: none;
+    border-color: #315d76;
+}
+
+.has-success .select2-container--open .select2-selection,
+.has-success .select2-container--krajee-bs5.select2-container--focus .select2-selection {
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    border-color: #3c763d;
+}
+
+.input-sm.select2-container--krajee-bs5 .select2-selection--single,
+.input-group-sm .select2-container--krajee-bs5 .select2-selection--single {
+    border-radius: 0;
+}
+
+.select2-container--krajee-bs5 .select2-selection--single .select2-selection__placeholder {
+    color: #555;
+}
+
+*/
