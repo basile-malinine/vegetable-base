@@ -64,6 +64,19 @@ $config = [
         ],
     ],
     'params' => $params,
+    'container' => [
+        'definitions' => [
+            yii\grid\GridView::class => [
+                'tableOptions' => [
+                    'class' => 'table table-condensed table-striped table-bordered table-hover mt-2'
+                ],
+                'formatter' => [
+                    'class' => 'yii\i18n\Formatter',
+                    'nullDisplay' => '',
+                ],
+            ],
+        ],
+    ],
 ];
 
 if (YII_ENV_DEV) {

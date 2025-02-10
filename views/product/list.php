@@ -101,10 +101,6 @@ $this->registerJsFile('@web/js/product.js');
                 },
             ],
         ],
-
-        'tableOptions' => [
-            'class' => 'table table-condensed table-striped table-bordered table-hover mt-2'
-        ],
     ]); ?>
 
 

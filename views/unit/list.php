@@ -66,16 +66,13 @@ $this->registerJsFile('@web/js/unit.js');
                 ],
             ],
 
-            // Вес
+            // Вес (кг)
             [
                 'attribute' => 'weight',
                 'enableSorting' => false,
                 'contentOptions' => [
-                    'style' => 'width: 100px; text-align: right;'
+                    'style' => 'width: 100px; text-align: right;',
                 ],
-                'value' => function ($model) {
-                    return $model->weight ?: '';
-                },
             ],
 
             // Пустота
@@ -84,10 +81,6 @@ $this->registerJsFile('@web/js/unit.js');
                     return '';
                 },
             ],
-        ],
-
-        'tableOptions' => [
-            'class' => 'table table-condensed table-striped table-bordered table-hover mt-2'
         ],
     ]); ?>
 

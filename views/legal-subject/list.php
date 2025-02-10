@@ -64,7 +64,7 @@ $this->registerJsFile('@web/js/legal-subject.js');
                 'attribute' => 'name',
                 'enableSorting' => true,
                 'headerOptions' => [
-                    'style' => 'width: 420px;'
+                    'style' => 'width: 350px;'
                 ],
                 'filterInputOptions' => [
                     'class' => 'form-control form-control-sm',
@@ -92,10 +92,6 @@ $this->registerJsFile('@web/js/legal-subject.js');
                     return '';
                 },
             ],
-        ],
-
-        'tableOptions' => [
-            'class' => 'table table-condensed table-striped table-bordered table-hover mt-2'
         ],
     ]); ?>
 

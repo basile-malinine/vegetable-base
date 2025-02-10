@@ -51,11 +51,8 @@ label {
     font-size: 14px;
 }
 
-.dropdown-menu {
-    border-radius: 0;
-    padding-left: 3px;
-    padding-right: 3px;
-    font-size: 12px;
+.dropdown-menu > .dropdown-item{
+    font-size: 14px;
 }
 
 .select2-results {
@@ -206,8 +203,9 @@ label {
 
 .form-select {
     height: 31px;
-    padding: 0 0 4px 15px;
+    padding: 0 0 3px 15px;
     border-radius: 3px;
+    font-size: 14px;
 }
 
 .form-check-input.form-check-input {  /* Почему-то срабатывает, когда два раза ???*/

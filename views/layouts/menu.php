@@ -17,6 +17,8 @@ echo Nav::widget([
                     'url' => ['/unit/index'],
                 ],
 
+                '<hr class="dropdown-divider">',
+
                 [
                     'label' => 'Юридические / Физические лица',
                     'url' => ['/legal-subject/index'],

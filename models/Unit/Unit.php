@@ -29,7 +29,7 @@ class Unit extends ActiveRecord
     {
         return [
             'id' => 'ID',
-            'name' => 'Имя',
+            'name' => 'Наименование',
             'is_weight' => 'Весовая',
             'weight' => 'Вес (кг)',
         ];
