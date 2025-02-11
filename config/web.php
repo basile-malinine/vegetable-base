@@ -58,8 +58,11 @@ $config = [
                 // ProductController Продукты
                 'product/<action:(edit|delete)>/<id:\d+>' => 'product/<action>',
 
-                // LegalSubjectController Продукты
+                // LegalSubjectController Доверенные лица
                 'legal-subject/<action:(edit|delete)>/<id:\d+>' => 'legal-subject/<action>',
+
+                // CompanyController Доверенные лица
+                'company/<action:(edit|delete)>/<id:\d+>' => 'company/<action>',
             ],
         ],
     ],

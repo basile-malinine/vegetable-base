@@ -18,6 +18,10 @@ echo Nav::widget([
                 ],
 
                 '<hr class="dropdown-divider">',
+                [
+                    'label' => 'Контрагенты',
+                    'url' => ['/company'],
+                ],
 
                 [
                     'label' => 'Юридические / Физические лица',
