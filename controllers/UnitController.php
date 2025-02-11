@@ -3,6 +3,7 @@
 namespace app\controllers;
 
 use yii\web\Controller;
+use yii\db\IntegrityException;
 use yii\web\NotFoundHttpException;
 use app\models\Unit\Unit;
 use app\models\Unit\UnitSearch;
@@ -46,7 +47,17 @@ class UnitController extends Controller
 
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+        $model = $this->findModel($id);
+
+        $dbMessages = \Yii::$app->params['messages']['db'];
+        try {
+            $model->delete();
+            \Yii::$app->session->setFlash('success', $dbMessages['delSuccess']);
+        } catch (IntegrityException $e) {
+            \Yii::$app->session->setFlash('error', $dbMessages['delIntegrityError']);
+        } catch (\Exception $e) {
+            \Yii::$app->session->setFlash('error', $dbMessages['delError']);
+        }
 
         return $this->redirect(['index']);
     }
