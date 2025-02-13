@@ -215,9 +215,13 @@ label {
     -webkit-box-shadow: none;
 }
 
+.col-form-label,
 .form-check-label {
-    padding: 2px 0 0 7px;
-    font-size: 16px;
+    font-size: 14px;
+}
+
+.form-check-label {
+    padding: 4px 0 0 7px;
 }
 
 /*
