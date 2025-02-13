@@ -18,6 +18,7 @@ class LegalSubject extends ActiveRecord
             [['name'], 'string', 'min' => 1, 'max' => 30],
             [['full_name'], 'string', 'min' => 1, 'max' => 100],
             [['inn'], 'string', 'min' => 10, 'max' => 12],
+            [['inn'], 'unique'],
             [['is_legal'], 'boolean'],
         ];
     }
