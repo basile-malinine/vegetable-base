@@ -68,7 +68,7 @@ use yii\bootstrap5\Html;
         </div>
 
         <div class="form-group">
-            <?= Html::submitButton('Сохранить', ['class' => 'btn btn-light btn-outline-secondary btn-sm me-2']) ?>
+            <?= Html::submitButton('Сохранить', ['class' => 'btn btn-light btn-outline-primary btn-sm me-2']) ?>
             <?= Html::a('Отмена', '/unit/index', ['class' => 'btn btn-light btn-outline-secondary btn-sm']) ?>
         </div>
 

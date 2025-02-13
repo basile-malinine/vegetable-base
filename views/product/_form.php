@@ -83,7 +83,7 @@ $weightDefault = Unit::findOne($unitDefault)->weight;
         </div>
 
         <div class="form-group">
-            <?= Html::submitButton('Сохранить', ['class' => 'btn btn-light btn-outline-secondary btn-sm me-2']) ?>
+            <?= Html::submitButton('Сохранить', ['class' => 'btn btn-light btn-outline-primary btn-sm me-2']) ?>
             <?= Html::a('Отмена', '/product/index', ['class' => 'btn btn-light btn-outline-secondary btn-sm']) ?>
         </div>
 
