@@ -8,7 +8,7 @@ use yii\web\NotFoundHttpException;
 use app\models\Product\Product;
 use app\models\Product\ProductSearch;
 
-class ProductController extends Controller
+class ProductController extends EntityController
 {
     public function actionIndex(): string
     {
@@ -25,7 +25,9 @@ class ProductController extends Controller
         $header = 'Продукт (новый)';
 
         if ($this->request->isPost) {
-            $this->postRequestAnalysis($model);
+            if ($this->postRequestAnalysis($model)) {
+                $this->redirect(['index']);
+            }
         } else {
             $model->loadDefaultValues();
         }
@@ -39,27 +41,12 @@ class ProductController extends Controller
         $header = 'Продукт [' . $model->name . ']';
 
         if ($this->request->isPost) {
-            $this->postRequestAnalysis($model);
+            if ($this->postRequestAnalysis($model)) {
+                $this->redirect(['index']);
+            }
         }
 
         return $this->render('edit', compact('model', 'header'));
-    }
-
-    public function actionDelete($id)
-    {
-        $model = $this->findModel($id);
-
-        $dbMessages = \Yii::$app->params['messages']['db'];
-        try {
-            $model->delete();
-            \Yii::$app->session->setFlash('success', $dbMessages['delSuccess']);
-        } catch (IntegrityException $e) {
-            \Yii::$app->session->setFlash('error', $dbMessages['delIntegrityError']);
-        } catch (\Exception $e) {
-            \Yii::$app->session->setFlash('error', $dbMessages['delError']);
-        }
-
-        return $this->redirect(['index']);
     }
 
     protected function findModel($id)
@@ -69,16 +56,5 @@ class ProductController extends Controller
         }
 
         throw new NotFoundHttpException('The requested page does not exist.');
-    }
-
-    // Обработка POST-запроса
-    private function postRequestAnalysis($model): void
-    {
-        if ($model->load($this->request->post())) {
-            if ($model->validate()) {
-                $model->save();
-                $this->redirect(['/product/index']);
-            }
-        }
     }
 }

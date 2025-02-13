@@ -2,13 +2,11 @@
 
 namespace app\controllers;
 
-use yii\web\Controller;
-use yii\db\IntegrityException;
 use yii\web\NotFoundHttpException;
 use app\models\Unit\Unit;
 use app\models\Unit\UnitSearch;
 
-class UnitController extends Controller
+class UnitController extends EntityController
 {
     public function actionIndex(): string
     {
@@ -25,7 +23,9 @@ class UnitController extends Controller
         $header = 'Единица измерения (новая)';
 
         if ($this->request->isPost) {
-            $this->postRequestAnalysis($model);
+            if ($this->postRequestAnalysis($model)) {
+                $this->redirect(['index']);
+            }
         } else {
             $model->loadDefaultValues();
         }
@@ -39,27 +39,12 @@ class UnitController extends Controller
         $header = 'Единица измерения [' . $model->name . ']';
 
         if ($this->request->isPost) {
-            $this->postRequestAnalysis($model);
+            if ($this->postRequestAnalysis($model)) {
+                $this->redirect(['index']);
+            }
         }
 
         return $this->render('edit', compact('model', 'header'));
-    }
-
-    public function actionDelete($id)
-    {
-        $model = $this->findModel($id);
-
-        $dbMessages = \Yii::$app->params['messages']['db'];
-        try {
-            $model->delete();
-            \Yii::$app->session->setFlash('success', $dbMessages['delSuccess']);
-        } catch (IntegrityException $e) {
-            \Yii::$app->session->setFlash('error', $dbMessages['delIntegrityError']);
-        } catch (\Exception $e) {
-            \Yii::$app->session->setFlash('error', $dbMessages['delError']);
-        }
-
-        return $this->redirect(['index']);
     }
 
     protected function findModel($id)
@@ -69,16 +54,5 @@ class UnitController extends Controller
         }
 
         throw new NotFoundHttpException('The requested page does not exist.');
-    }
-
-    // Обработка POST-запроса
-    private function postRequestAnalysis($model): void
-    {
-        if ($model->load($this->request->post())) {
-            if ($model->validate()) {
-                $model->save();
-                $this->redirect(['/unit/index']);
-            }
-        }
     }
 }
