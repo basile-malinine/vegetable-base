@@ -73,8 +73,15 @@ $config = [
                 // LegalSubjectController Доверенные лица
                 'legal-subject/<action:(edit|delete)>/<id:\d+>' => 'legal-subject/<action>',
 
-                // CompanyController Доверенные лица
+                // CompanyController Контрагенты
                 'company/<action:(edit|delete)>/<id:\d+>' => 'company/<action>',
+
+                // CompanyAliasController Псевдонимы контрагентов
+                'company-alias/<action:(index|create)>/<company_id:\d+>' => 'company-alias/<action>',
+                'company-alias/<action:(edit)>/<id:\d+>' => 'company-alias/<action>',
+                'company-alias/<action:(edit)>/<id:\d+>/<company_id:\d+>' => 'company-alias/<action>',
+                'company-alias/<action:(delete)>/<id:\d+>' => 'company-alias/<action>',
+                'company-alias/<action:(delete)>/<id:\d+>/<company_id:\d+>' => 'company-alias/<action>',
             ],
         ],
     ],

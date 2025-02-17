@@ -1,14 +1,21 @@
 <?php
 
-use yii\bootstrap5\ActiveForm;
-use yii\bootstrap5\Html;
-use app\models\Company\Company;
-
 /** @var yii\web\View $this */
 /** @var yii\bootstrap5\ActiveForm $form */
 /** @var Company $model */
+
 /** @var string $header */
 
+use yii\bootstrap5\ActiveForm;
+use yii\bootstrap5\Html;
+use kartik\select2\Select2;
+use app\models\Company\Company;
+use app\models\Company\CompanyAlias;
+
+$this->registerCssFile('@web/css/company.css');
+$this->registerJsFile('@web/js/company-sets.js');
+
+echo $this->render('modal/aliases')
 ?>
 
 <div class="page-top-panel">
@@ -31,33 +38,65 @@ use app\models\Company\Company;
             ],
         ]); ?>
 
-        <div class="row form-row">
-            <!-- Продавец -->
-            <div class="form-col col-2">
-                <?= $form->field($model, 'is_seller')->checkbox(
-                    [
-                        'onchange' => '',
-                    ]
-                ) ?>
+        <div class="row <?= Yii::$app->requestedAction->id == 'create' ? 'form-last-row' : 'form-row' ?>">
+
+            <div class="col-4">
+                <div class="row">
+                    <!-- Продавец -->
+                    <div class="form-col col-3">
+                        <?= $form->field($model, 'is_seller')->widget(Select2::class, [
+                            'data' => [0 => 'Нет', 1 => 'Да'],
+                            'hideSearch' => true,
+                        ]); ?>
+                    </div>
+
+                    <!-- Покупатель -->
+                    <div class="form-col col-3">
+                        <?= $form->field($model, 'is_buyer')->widget(Select2::class, [
+                            'data' => [0 => 'Нет', 1 => 'Да'],
+                            'hideSearch' => true,
+                        ]); ?>
+                    </div>
+
+                    <!-- Название -->
+                    <div class="form-col col-6">
+                        <?= $form->field($model, 'name')->textInput([
+                            'maxlength' => true,
+                        ]) ?>
+                    </div>
+                </div>
             </div>
 
-            <!-- Покупатель -->
-            <div class="form-col col-2">
-                <?= $form->field($model, 'is_buyer')->checkbox(
-                    [
-                        'onchange' => '',
-                    ]
-                ) ?>
-            </div>
         </div>
 
-        <div class="row form-last-row">
-            <!-- Название -->
-            <div class="form-col col-4">
-                <?= $form->field($model, 'name')->textInput([
-                    'maxlength' => true,
-                ]) ?>
+        <div class="row form-last-row" <?= Yii::$app->requestedAction->id == 'create' ? 'hidden' : '' ?>>
+            <div class="col-4">
+                <!-- Псевдонимы -->
+                <div class="row">
+                    <div class="form-col col-12">
+                        <?php
+                        $aliases = CompanyAlias::getByCompanyId($model->id);
+                        $values = '';
+                        foreach ($aliases as $id => $name) {
+                            $values .= '<div class="set-item">' . $name . '</div>';
+                        }
+                        if (empty($values)) {
+                            $values = '<div class="set-item-none">Нет</div>';
+                        }
+                        ?>
+                        <div class="mb-3 field-company-aliases">
+                            <label class="col-form-label pt-0">Псевдонимы</label>
+                            <div class="set-container d-flex flex-row">
+                                <div class="d-flex flex-row flex-wrap">
+                                    <?php echo $values; ?>
+                                </div>
+                                <a href="/company-alias/index/<?= $model->id ?>" id="aliases-edit" class="btn-item-edit"><i class="fa fa-ellipsis-h"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
+
         </div>
 
         <div class="form-group">

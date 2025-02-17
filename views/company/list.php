@@ -13,9 +13,9 @@ $this->registerJsFile('@web/js/company.js');
 ?>
 <div class="page-content">
     <div class="page-top-panel">
-        <div class="page-top-panel-header">
+        <div class="page-top-panel-header d-flex">
             <?= $header ?>
-            <a href="/company/create" class="btn btn-light btn-outline-secondary btn-sm ms-5 pe-3">
+            <a href="/company/create" class="btn btn-light btn-outline-secondary btn-sm mt-1 ms-auto pe-3">
                 <i class="fa fa-plus"></i>
                 <span class="ms-2">Добавить</span>
             </a>
@@ -56,6 +56,28 @@ $this->registerJsFile('@web/js/company.js');
                     'class' => 'form-control form-control-sm',
                 ],
             ],
+
+            // Псевдонимы
+//            [
+//                'format' => 'raw',
+//                'attribute' => 'aliases',
+//                'enableSorting' => true,
+//                'headerOptions' => [
+//                    'style' => 'width: 450px;'
+//                ],
+//                'filterInputOptions' => [
+//                    'class' => 'form-control form-control-sm',
+//                ],
+//                'value' => function ($model) {
+//                    $aliases = $model->aliases;
+//                    $values = '';
+//                    foreach ($aliases as $alias) {
+//                        $values .= $alias->name . ', ';
+//                    }
+//                    $values = substr($values, 0, -2);
+//                    return $values;
+//                }
+//            ],
 
             // Продавец
             [

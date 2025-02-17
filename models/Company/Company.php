@@ -9,11 +9,14 @@ use yii\db\ActiveRecord;
  *
  * @property int $id
  * @property string $name Название
+ * @property string $aliases Псевдонимы
  * @property int $is_seller Продавец
  * @property int $is_buyer Покупатель
  */
 class Company extends ActiveRecord
 {
+    public $aliases;
+
     /**
      * {@inheritdoc}
      */
@@ -29,9 +32,11 @@ class Company extends ActiveRecord
     {
         return [
             [['name'], 'required'],
-            [['is_seller', 'is_buyer'], 'integer'],
-            [['name'], 'string', 'max' => 30],
             [['name'], 'trim'],
+            [['name'], 'unique'],
+            [['name'], 'string', 'max' => 30],
+            [['is_seller', 'is_buyer'], 'integer'],
+            [['aliases', 'legalSubjects'], 'safe'],
         ];
     }
 
@@ -43,8 +48,18 @@ class Company extends ActiveRecord
         return [
             'id' => 'ID',
             'name' => 'Название',
+            'aliases' => 'Псевдонимы',
             'is_seller' => 'Продавец',
             'is_buyer' => 'Покупатель',
         ];
+    }
+
+    public static function getList()
+    {
+        return self::find()
+            ->select(['name', 'id'])
+            ->indexBy('id')
+            ->orderBy(['name' => SORT_ASC])
+            ->column();
     }
 }

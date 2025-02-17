@@ -12,19 +12,23 @@ class EntityController extends Controller
 {
     public function actionDelete($id)
     {
+        $this->deleteById($id);
+
+        return $this->redirect(['index']);
+    }
+
+    protected function deleteById($id)
+    {
         $model = $this->findModel($id);
 
         $dbMessages = \Yii::$app->params['messages']['db'];
         try {
             $model->delete();
-            \Yii::$app->session->setFlash('success', $dbMessages['delSuccess']);
         } catch (IntegrityException $e) {
             \Yii::$app->session->setFlash('error', $dbMessages['delIntegrityError']);
         } catch (\Exception $e) {
             \Yii::$app->session->setFlash('error', $dbMessages['delError']);
         }
-
-        return $this->redirect(['index']);
     }
 
     // Обработка POST-запроса

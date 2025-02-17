@@ -24,7 +24,7 @@ class CompanyController extends EntityController
 
         if ($this->request->isPost) {
             if ($this->postRequestAnalysis($model)) {
-                $this->redirect(['index']);
+                $this->redirect(['company/edit/' . $model->id]);
             }
         } else {
             $model->loadDefaultValues();

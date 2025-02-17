@@ -11,7 +11,7 @@ class m250211_043821_create_table_company extends Migration
     {
         $this->createTable('company', [
             'id' => $this->primaryKey(),
-            'name' => $this->string(30)->notNull()->comment('Название'),
+            'name' => $this->string(30)->notNull()->unique()->comment('Название'),
             'is_seller' => $this->boolean()->notNull()->defaultValue(0)->comment('Продавец'),
             'is_buyer' => $this->boolean()->notNull()->defaultValue(0)->comment('Покупатель'),
         ]);

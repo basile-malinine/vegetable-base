@@ -13,9 +13,9 @@ $this->registerJsFile('@web/js/legal-subject.js');
 ?>
 <div class="page-content">
     <div class="page-top-panel">
-        <div class="page-top-panel-header">
+        <div class="page-top-panel-header d-flex">
             <?= $header ?>
-            <a href="/legal-subject/create" class="btn btn-light btn-outline-secondary btn-sm ms-5 pe-3">
+            <a href="/legal-subject/create" class="btn btn-light btn-outline-secondary btn-sm mt-1 ms-auto pe-3">
                 <i class="fa fa-plus"></i>
                 <span class="ms-2">Добавить</span>
             </a>
