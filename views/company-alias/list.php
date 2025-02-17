@@ -32,6 +32,7 @@ $this->registerJsFile('@web/js/company-alias.js');
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
+        'filterModel' => $searchModel,
 
         'rowOptions' => function ($model, $key, $index, $grid) {
             $company_id = Yii::$app->request->get('company_id');
@@ -57,22 +58,28 @@ $this->registerJsFile('@web/js/company-alias.js');
             // Псевдоним
             [
                 'attribute' => 'name',
-                'enableSorting' => false,
+                'enableSorting' => true,
                 'headerOptions' => [
                     'style' => 'width: 240px;'
+                ],
+                'filterInputOptions' => [
+                    'class' => 'form-control form-control-sm'
                 ],
             ],
 
             // Контрагент
             [
-                'attribute' => 'company_id',
-                'enableSorting' => false,
+                'attribute' => 'company',
+                'enableSorting' => true,
                 'visible' => !$company_id,
                 'value' => function ($model) {
                     return $model->company->name;
                 },
                 'headerOptions' => [
                     'style' => 'width: 240px;'
+                ],
+                'filterInputOptions' => [
+                    'class' => 'form-control form-control-sm'
                 ],
             ],
 

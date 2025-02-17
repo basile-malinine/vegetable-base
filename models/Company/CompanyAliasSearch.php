@@ -7,6 +7,8 @@ use yii\data\ActiveDataProvider;
 
 class CompanyAliasSearch extends CompanyAlias
 {
+    public $company;
+
     public function rules(): array
     {
         return [
@@ -21,10 +23,17 @@ class CompanyAliasSearch extends CompanyAlias
 
     public function search($params)
     {
-        $query = CompanyAlias::find();
+        $query = CompanyAlias::find()
+            ->joinWith('company');
+
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);
+
+        $dataProvider->sort->attributes['company'] = [
+            'asc' => ['company.name' => SORT_ASC],
+            'desc' => ['company.name' => SORT_DESC],
+        ];
 
         $this->load($params);
 
@@ -33,7 +42,8 @@ class CompanyAliasSearch extends CompanyAlias
             return $dataProvider;
         }
 
-        $query->andFilterWhere(['like', 'name', $this->name]);
+        $query->andFilterWhere(['like', 'company_alias.name', $this->name]);
+        $query->andFilterWhere(['like', 'company.name', $this->company]);
 
         // Если выводим список для конкретного Контрагента
         if ($params['company_id'] ?? null) {

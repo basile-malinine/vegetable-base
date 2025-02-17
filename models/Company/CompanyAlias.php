@@ -45,6 +45,7 @@ class CompanyAlias extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'company_id' => 'Контрагент',
+            'company' => 'Контрагент',
             'name' => 'Псевдоним',
         ];
     }
