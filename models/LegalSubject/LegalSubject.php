@@ -54,7 +54,7 @@ class LegalSubject extends ActiveRecord
     {
         return self::find()
             ->select(['name', 'id'])
-            ->where(['company_id' => $ids])
+            ->where(['id' => $ids])
             ->indexBy('id')
             ->orderBy(['name' => SORT_ASC])
             ->column();

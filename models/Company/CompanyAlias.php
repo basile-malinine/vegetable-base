@@ -60,7 +60,7 @@ class CompanyAlias extends \yii\db\ActiveRecord
         return $this->hasOne(Company::class, ['id' => 'company_id']);
     }
 
-    public static function getByCompanyId($companyId)
+    public static function getListByCompanyId($companyId)
     {
         $res = self::find()
             ->select('name, id')

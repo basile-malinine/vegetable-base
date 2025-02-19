@@ -56,24 +56,10 @@ $this->registerJsFile('@web/js/company-legal-subject.js');
                 ],
             ],
 
-            // Контрагент
-            [
-                'attribute' => 'company',
-                'enableSorting' => true,
-                'visible' => !$company_id,
-                'value' => 'company.name',
-                'headerOptions' => [
-                    'style' => 'width: 300px;'
-                ],
-                'filterInputOptions' => [
-                    'class' => 'form-control form-control-sm'
-                ],
-            ],
-
             // Доверенное лицо Название
             [
                 'attribute' => 'legal_subject',
-                'label' => 'Доверенное лицо Название',
+                'label' => 'Название',
                 'enableSorting' => true,
                 'value' => 'legal_subject.name',
                 'headerOptions' => [
@@ -87,11 +73,25 @@ $this->registerJsFile('@web/js/company-legal-subject.js');
             // Доверенное лицо Полное название
             [
                 'attribute' => 'legal_subject_full',
-                'label' => 'Доверенное лицо Полное название',
+                'label' => 'Полное название',
                 'enableSorting' => true,
                 'value' => 'legal_subject.full_name',
                 'headerOptions' => [
                     'style' => 'width: 460px;'
+                ],
+                'filterInputOptions' => [
+                    'class' => 'form-control form-control-sm'
+                ],
+            ],
+
+            // Контрагент
+            [
+                'attribute' => 'company',
+                'enableSorting' => true,
+                'visible' => !$company_id,
+                'value' => 'company.name',
+                'headerOptions' => [
+                    'style' => 'width: 300px;'
                 ],
                 'filterInputOptions' => [
                     'class' => 'form-control form-control-sm'

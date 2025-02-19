@@ -62,7 +62,7 @@ class CompanyLegalSubjectSearch extends CompanyLegalSubject
         }
 
         if (!isset($params['sort'])) {
-            $query->orderBy('company.name ASC');
+            $query->orderBy('legal_subject.name ASC, company.name ASC');
         }
         return $dataProvider;
     }

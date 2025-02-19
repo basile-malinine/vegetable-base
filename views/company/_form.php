@@ -11,6 +11,7 @@ use yii\bootstrap5\Html;
 use kartik\select2\Select2;
 use app\models\Company\Company;
 use app\models\Company\CompanyAlias;
+use app\models\LegalSubject\LegalSubject;
 
 $this->registerCssFile('@web/css/company.css');
 ?>
@@ -66,28 +67,65 @@ $this->registerCssFile('@web/css/company.css');
 
         </div>
 
-        <div class="row form-last-row" <?= Yii::$app->requestedAction->id == 'create' ? 'hidden' : '' ?>>
+        <!-- При создании не отображается -->
+        <div class="row form-row" <?= Yii::$app->requestedAction->id == 'create' ? 'hidden' : '' ?>>
             <div class="col-4">
                 <!-- Псевдонимы -->
                 <div class="row">
                     <div class="form-col col-12">
                         <?php
-                        $aliases = CompanyAlias::getByCompanyId($model->id);
+                        $items = CompanyAlias::getListByCompanyId($model->id);
                         $values = '';
-                        foreach ($aliases as $id => $name) {
+                        foreach ($items as $id => $name) {
                             $values .= '<div class="set-item">' . $name . '</div>';
                         }
                         if (empty($values)) {
                             $values = '<div class="set-item-none">Нет</div>';
                         }
                         ?>
-                        <div class="mb-3 field-company-aliases">
+                        <div class="mb-3">
                             <label class="col-form-label pt-0">Псевдонимы</label>
                             <div class="set-container d-flex flex-row">
                                 <div class="d-flex flex-row flex-wrap">
                                     <?php echo $values; ?>
                                 </div>
                                 <a href="/company-alias/index/<?= $model->id ?>" id="aliases-edit" class="btn-item-edit"><i class="fa fa-ellipsis-h"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- При создании не отображается -->
+        <div class="row form-last-row" <?= Yii::$app->requestedAction->id == 'create' ? 'hidden' : '' ?>>
+            <div class="col-4">
+                <!-- Доверенные лица -->
+                <div class="row">
+                    <div class="form-col col-12">
+                        <?php
+                        $company_legal_subjects = $model->company_legal_subject;
+                        $ids = [];
+                        foreach ($company_legal_subjects as $idx => $company_legal_subject) {
+                            $ids[] = $company_legal_subject->legal_subject_id;
+                        }
+                        $items = LegalSubject::getListByIds($ids);
+                        $values = '';
+                        foreach ($items as $id => $name) {
+                            $values .= '<div class="set-item">' . $name . '</div>';
+                        }
+                        if (empty($values)) {
+                            $values = '<div class="set-item-none">Нет</div>';
+                        }
+                        ?>
+                        <div class="mb-3">
+                            <label class="col-form-label pt-0">Доверенные лица</label>
+                            <div class="set-container d-flex flex-row">
+                                <div class="d-flex flex-row flex-wrap">
+                                    <?php echo $values; ?>
+                                </div>
+                                <a href="/company-legal-subject/index/<?= $model->id ?>" id="legal-subjects-edit" class="btn-item-edit"><i class="fa fa-ellipsis-h"></i></a>
                             </div>
                         </div>
                     </div>

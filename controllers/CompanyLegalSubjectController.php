@@ -53,7 +53,7 @@ class CompanyLegalSubjectController extends EntityController
 
         $header = 'Доверенное лицо';
         if ($company_id) {
-            $header .= ' контрагента "' . Company::findOne($company_id)->name . '" ["' . $model->name . '"]';
+            $header .= ' контрагента "' . Company::findOne($company_id)->name . '" ["' . $model->legal_subject->name . '"]';
         } else {
             $header .= ' контрагента "' . $model->company->name
                 . '" ["' . $model->legal_subject->name . '"]';
