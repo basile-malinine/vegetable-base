@@ -1,10 +1,11 @@
 <?php
 
 use yii\grid\GridView;
+use app\models\Company\CompanyAliasSearch;
 
 /** @var yii\web\View $this */
-/** @var \app\models\Company\UnitSearch $searchModel */
 /** @var yii\data\ActiveDataProvider $dataProvider */
+/** @var CompanyAliasSearch $searchModel */
 /** @var string $header */
 /** @var integer $company_id */
 
