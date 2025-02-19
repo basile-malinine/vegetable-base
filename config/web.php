@@ -82,6 +82,13 @@ $config = [
                 'company-alias/<action:(edit)>/<id:\d+>/<company_id:\d+>' => 'company-alias/<action>',
                 'company-alias/<action:(delete)>/<id:\d+>' => 'company-alias/<action>',
                 'company-alias/<action:(delete)>/<id:\d+>/<company_id:\d+>' => 'company-alias/<action>',
+
+                // CompanyLegalSubjectController Доверенные лица
+                'company-legal-subject/<action:(index|create)>/<company_id:\d+>' => 'company-legal-subject/<action>',
+                'company-legal-subject/<action:(edit)>/<id:\d+>' => 'company-legal-subject/<action>',
+                'company-legal-subject/<action:(edit)>/<id:\d+>/<company_id:\d+>' => 'company-legal-subject/<action>',
+                'company-legal-subject/<action:(delete)>/<id:\d+>' => 'company-legal-subject/<action>',
+                'company-legal-subject/<action:(delete)>/<id:\d+>/<company_id:\d+>' => 'company-legal-subject/<action>',
             ],
         ],
     ],

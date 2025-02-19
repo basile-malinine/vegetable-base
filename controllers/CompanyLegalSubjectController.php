@@ -2,22 +2,22 @@
 
 namespace app\controllers;
 
+use app\models\Company\Company;
+use app\models\Company\CompanyLegalSubject;
+use app\models\Company\CompanyLegalSubjectSearch;
 use app\models\LegalSubject\LegalSubject;
 use yii\web\NotFoundHttpException;
-use app\models\Company\Company;
-use app\models\Company\CompanyAlias;
-use app\models\Company\CompanyAliasSearch;
 
-class CompanyAliasController extends EntityController
+class CompanyLegalSubjectController extends EntityController
 {
     public function actionIndex($company_id = null): string
     {
-        $searchModel = new CompanyAliasSearch();
+        $searchModel = new CompanyLegalSubjectSearch();
         $dataProvider = $searchModel->search($this->request->queryParams);
 
-        $header = 'Псевдонимы';
+        $header = 'Доверенные лица';
         if ($company_id) {
-            $header .= ' для контрагента "' . Company::findOne($company_id)->name . '"';
+            $header .= ' контрагента "' . Company::findOne($company_id)->name . '"';
         } else {
             $header .= ' контрагентов';
         }
@@ -27,13 +27,13 @@ class CompanyAliasController extends EntityController
 
     public function actionCreate($company_id = null)
     {
-        $model = new CompanyAlias();
+        $model = new CompanyLegalSubject();
 
-        $header = 'Псевдоним';
+        $header = 'Доверенное лицо';
         if ($company_id) {
-            $header .= ' для контрагента "' . Company::findOne($company_id)->name . '" (новый)';
+            $header .= ' контрагента "' . Company::findOne($company_id)->name . '" (новое)';
         } else {
-            $header .= ' (новый)';
+            $header .= ' (новое)';
         }
 
         if ($this->request->isPost) {
@@ -51,11 +51,12 @@ class CompanyAliasController extends EntityController
     {
         $model = $this->findModel($id);
 
-        $header = 'Псевдоним';
+        $header = 'Доверенное лицо';
         if ($company_id) {
-            $header .= ' для контрагента "' . Company::findOne($company_id)->name . '" ["' . $model->name . '"  ]';
+            $header .= ' контрагента "' . Company::findOne($company_id)->name . '" ["' . $model->name . '"]';
         } else {
-            $header .= ' контрагента "' . Company::findOne($model->company_id)->name . '" ["' . $model->name . '"]';
+            $header .= ' контрагента "' . $model->company->name
+                . '" ["' . $model->legal_subject->name . '"]';
         }
 
         if ($this->request->isPost) {
@@ -67,16 +68,9 @@ class CompanyAliasController extends EntityController
         return $this->render('edit', compact('model', 'header', 'company_id'));
     }
 
-    public function actionDelete($id, $company_id = null)
-    {
-        $this->deleteById($id);
-
-        return $this->redirect(['index\\' . $company_id ?: '']);
-    }
-
     protected function findModel($id)
     {
-        if (($model = CompanyAlias::findOne(['id' => $id])) !== null) {
+        if (($model = CompanyLegalSubject::findOne(['id' => $id])) !== null) {
             return $model;
         }
 

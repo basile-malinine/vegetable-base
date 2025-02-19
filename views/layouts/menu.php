@@ -32,6 +32,12 @@ echo Nav::widget([
                 ],
 
                 [
+                    'label' => 'Доверенные лица контрагентов',
+                    'url' => ['/company-legal-subject/index'],
+                    'disabled' => !(bool)Company::find()->count(),
+                ],
+
+                [
                     'label' => 'Юридические / Физические лица',
                     'url' => ['/legal-subject/index'],
                 ],

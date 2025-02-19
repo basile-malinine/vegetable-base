@@ -59,6 +59,11 @@ class Company extends ActiveRecord
         return $this->hasMany(CompanyAlias::class, ['company_id' => 'id']);
     }
 
+    public function getCompany_legal_subject()
+    {
+        return $this->hasMany(CompanyLegalSubject::class, ['company_id' => 'id']);
+    }
+
     public static function getList()
     {
         return self::find()

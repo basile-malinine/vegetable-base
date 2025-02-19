@@ -2,6 +2,8 @@
 
 namespace app\models\LegalSubject;
 
+use app\models\Company\CompanyLegalSubject;
+use yii\db\ActiveQuery;
 use yii\db\ActiveRecord;
 
 class LegalSubject extends ActiveRecord
@@ -32,5 +34,39 @@ class LegalSubject extends ActiveRecord
             'full_name' => 'Полное название или ФИО',
             'inn' => 'ИНН',
         ];
+    }
+
+    public function getCompany_legal_subject()
+    {
+        return $this->hasMany(CompanyLegalSubject::class, ['legal_subject_id' => 'id']);
+    }
+
+    public static function getList(): array
+    {
+        return self::find()
+            ->select(['name', 'id'])
+            ->indexBy('id')
+            ->orderBy(['name' => SORT_ASC])
+            ->column();
+    }
+
+    public static function getListByIds($ids): array
+    {
+        return self::find()
+            ->select(['name', 'id'])
+            ->where(['company_id' => $ids])
+            ->indexBy('id')
+            ->orderBy(['name' => SORT_ASC])
+            ->column();
+    }
+
+    public static function getListExceptIds($ids): array
+    {
+        return self::find()
+            ->select(['name', 'id'])
+            ->where('id NOT IN(:ids)',  [':ids' => implode(',', $ids)])
+            ->indexBy('id')
+            ->orderBy(['name' => SORT_ASC])
+            ->column();
     }
 }
