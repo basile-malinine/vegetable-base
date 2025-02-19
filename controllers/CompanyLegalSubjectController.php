@@ -68,6 +68,13 @@ class CompanyLegalSubjectController extends EntityController
         return $this->render('edit', compact('model', 'header', 'company_id'));
     }
 
+    public function actionDelete($id, $company_id = null)
+    {
+        $this->deleteById($id);
+
+        return $this->redirect(['index\\' . $company_id ?: '']);
+    }
+
     protected function findModel($id)
     {
         if (($model = CompanyLegalSubject::findOne(['id' => $id])) !== null) {
