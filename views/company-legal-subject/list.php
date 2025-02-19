@@ -61,9 +61,7 @@ $this->registerJsFile('@web/js/company-legal-subject.js');
                 'attribute' => 'company',
                 'enableSorting' => true,
                 'visible' => !$company_id,
-                'value' => function ($model) {
-                    return $model->company->name;
-                },
+                'value' => 'company.name',
                 'headerOptions' => [
                     'style' => 'width: 300px;'
                 ],
@@ -77,9 +75,7 @@ $this->registerJsFile('@web/js/company-legal-subject.js');
                 'attribute' => 'legal_subject',
                 'label' => 'Доверенное лицо Название',
                 'enableSorting' => true,
-                'value' => function ($model) {
-                    return $model->legal_subject->name;
-                },
+                'value' => 'legal_subject.name',
                 'headerOptions' => [
                     'style' => 'width: 300px;'
                 ],
@@ -90,14 +86,12 @@ $this->registerJsFile('@web/js/company-legal-subject.js');
 
             // Доверенное лицо Полное название
             [
-                'attribute' => 'legal_subject',
+                'attribute' => 'legal_subject_full',
                 'label' => 'Доверенное лицо Полное название',
-                'enableSorting' => false,
-                'value' => function ($model) {
-                    return $model->legal_subject->full_name;
-                },
+                'enableSorting' => true,
+                'value' => 'legal_subject.full_name',
                 'headerOptions' => [
-                    'style' => 'width: 360px;'
+                    'style' => 'width: 460px;'
                 ],
                 'filterInputOptions' => [
                     'class' => 'form-control form-control-sm'

@@ -9,11 +9,12 @@ class CompanyLegalSubjectSearch extends CompanyLegalSubject
 {
     public $company;
     public $legal_subject;
+    public $legal_subject_full;
 
     public function rules(): array
     {
         return [
-            [['company, legal_subject'], 'safe'],
+            [['company', 'legal_subject', 'legal_subject_full'], 'safe'],
         ];
     }
 
@@ -32,12 +33,16 @@ class CompanyLegalSubjectSearch extends CompanyLegalSubject
         ]);
 
         $dataProvider->sort->attributes['company'] = [
-            'asc' => ['company.name' => SORT_ASC],
-            'desc' => ['company.name' => SORT_DESC],
+            'asc' => ['company.name' => SORT_ASC, 'legal_subject.name' => SORT_ASC],
+            'desc' => ['company.name' => SORT_DESC, 'legal_subject.name' => SORT_ASC],
         ];
         $dataProvider->sort->attributes['legal_subject'] = [
             'asc' => ['legal_subject.name' => SORT_ASC, 'company.name' => SORT_ASC],
-            'desc' => ['legal_subject.name' => SORT_DESC, 'company.name' => SORT_DESC],
+            'desc' => ['legal_subject.name' => SORT_DESC, 'company.name' => SORT_ASC],
+        ];
+        $dataProvider->sort->attributes['legal_subject_full'] = [
+            'asc' => ['legal_subject.full_name' => SORT_ASC, 'company.name' => SORT_ASC],
+            'desc' => ['legal_subject.full_name' => SORT_DESC, 'company.name' => SORT_ASC],
         ];
 
         $this->load($params);
@@ -49,6 +54,7 @@ class CompanyLegalSubjectSearch extends CompanyLegalSubject
 
         $query->andFilterWhere(['like', 'company.name', $this->company]);
         $query->andFilterWhere(['like', 'legal_subject.name', $this->legal_subject]);
+        $query->andFilterWhere(['like', 'legal_subject.full_name', $this->legal_subject_full]);
 
         // Если выводим список для конкретного Контрагента
         if ($params['company_id'] ?? null) {

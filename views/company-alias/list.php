@@ -73,9 +73,7 @@ $this->registerJsFile('@web/js/company-alias.js');
                 'attribute' => 'company',
                 'enableSorting' => true,
                 'visible' => !$company_id,
-                'value' => function ($model) {
-                    return $model->company->name;
-                },
+                'value' => 'company.name',
                 'headerOptions' => [
                     'style' => 'width: 240px;'
                 ],
