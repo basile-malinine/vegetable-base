@@ -100,3 +100,8 @@ a.desc:after {
     margin-bottom: 29px;
     border-bottom: 1px solid #e1e3e1;
 }
+
+/* Кнопка возврата ---------------------- */
+.btn-return {
+    border-radius: 100%;
+}

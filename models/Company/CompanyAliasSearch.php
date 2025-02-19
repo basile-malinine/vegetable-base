@@ -31,8 +31,8 @@ class CompanyAliasSearch extends CompanyAlias
         ]);
 
         $dataProvider->sort->attributes['company'] = [
-            'asc' => ['company.name' => SORT_ASC],
-            'desc' => ['company.name' => SORT_DESC],
+            'asc' => ['company.name' => SORT_ASC, 'company_alias.name' => SORT_ASC],
+            'desc' => ['company.name' => SORT_DESC, 'company_alias.name' => SORT_DESC],
         ];
 
         $this->load($params);

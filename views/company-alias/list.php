@@ -17,7 +17,7 @@ $this->registerJsFile('@web/js/company-alias.js');
             <?php
             if ($company_id) {
                 echo '<a href="/company/edit/' . $company_id . '"'
-                    . ' class="btn btn-light btn-outline-secondary btn-sm mt-1 me-3 pe-2"><i class="fa fa-arrow-left"></i>'
+                    . ' class="btn btn-return btn-light btn-outline-secondary btn-sm mt-1 me-3 pe-2"><i class="fa fa-arrow-left"></i>'
                     . '</a>';
             }
             ?>

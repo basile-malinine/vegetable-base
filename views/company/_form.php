@@ -13,9 +13,6 @@ use app\models\Company\Company;
 use app\models\Company\CompanyAlias;
 
 $this->registerCssFile('@web/css/company.css');
-$this->registerJsFile('@web/js/company-sets.js');
-
-echo $this->render('modal/aliases')
 ?>
 
 <div class="page-top-panel">
