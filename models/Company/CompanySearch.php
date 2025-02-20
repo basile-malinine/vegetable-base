@@ -56,11 +56,13 @@ class CompanySearch extends Company
             $query->orFilterWhere(['like', 'company_alias.name', $this->name]);
         }
         // По Доверенным лицам
-        $ids = LegalSubject::find()
-            ->select('id')
-            ->filterWhere(['like', 'name', $this->legal_subject])
-            ->column();
-        $query->andFilterWhere(['company_legal_subject.legal_subject_id' => $ids]);
+        if ($this->legal_subject) {
+            $ids = LegalSubject::find()
+                ->select('id')
+                ->filterWhere(['like', 'name', $this->legal_subject])
+                ->column();
+            $query->andWhere(['company_legal_subject.legal_subject_id' => $ids]);
+        }
         $query->andFilterWhere(['like', 'is_seller', $this->is_seller]);
         $query->andFilterWhere(['like', 'is_buyer', $this->is_buyer]);
 

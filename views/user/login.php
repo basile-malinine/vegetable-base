@@ -8,11 +8,15 @@
 use yii\bootstrap5\ActiveForm;
 use yii\bootstrap5\Html;
 
-$this->title = 'Login';
 ?>
-<div class="page-content">
-    <div class="page-content-form">
 
+<div class="page-content">
+    <div class="page-top-panel">
+        <div class="page-top-panel-header d-inline">
+            Вход в систему
+        </div>
+    </div>
+    <div class="page-content-form">
         <?php $form = ActiveForm::begin([
             'id' => 'login-form',
             'fieldConfig' => [
@@ -41,11 +45,7 @@ $this->title = 'Login';
         <div class="row form-last-row mt-3">
             <!-- Запомнить-->
             <div class="form-col col-4">
-                <?= $form->field($model, 'rememberMe')->checkbox(
-//                    [
-//                        'template' => "<div class=\"custom-control custom-checkbox\">{input} {label}</div>\n<div class=\"col-lg-8\">{error}</div>",
-//                    ]
-                ) ?>
+                <?= $form->field($model, 'rememberMe')->checkbox() ?>
             </div>
         </div>
 
