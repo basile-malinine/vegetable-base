@@ -1,10 +1,11 @@
 <?php
 
-use kartik\select2\Select2;
 use yii\bootstrap5\Html;
 use yii\grid\GridView;
+use yii\helpers\ArrayHelper;
 use app\models\Company\CompanyAlias;
 use app\models\Company\CompanySearch;
+use app\models\LegalSubject\LegalSubject;
 
 /** @var yii\data\ActiveDataProvider $dataProvider */
 /** @var yii\web\View $this */
@@ -53,7 +54,7 @@ $this->registerJsFile('@web/js/company.js');
             [
                 'format' => 'raw',
                 'attribute' => 'name',
-                'label' => 'Наименование (псевдонимы)',
+                'label' => 'Название (псевдонимы)',
                 'enableSorting' => true,
                 'headerOptions' => [
                     'style' => 'width: 520px;'
@@ -86,11 +87,7 @@ $this->registerJsFile('@web/js/company.js');
                 ],
                 'value' => function ($model) {
                     $val = '<strong>' . $model->name . '</strong>';
-                    $aliases = CompanyAlias::find()
-                        ->select(['name'])
-                        ->where(['company_id' => $model->id])
-                        ->orderBy(['name' => SORT_ASC])
-                        ->column();
+                    $aliases = CompanyAlias::getListByCompanyId($model->id);
                     if (!empty($aliases)) {
                         $aliases = implode(', ', $aliases);
                         $val .= ' (' . $aliases . ')';
@@ -99,6 +96,29 @@ $this->registerJsFile('@web/js/company.js');
                 },
             ],
 
+            // Доверенные лица
+            [
+                'format' => 'raw',
+                'attribute' => 'legal_subject',
+                'label' => 'Доверенные лица',
+                'enableSorting' => true,
+                'headerOptions' => [
+                    'style' => 'width: 520px;'
+                ],
+                'value' => function ($model) {
+                    $cls = $model->company_legal_subject;
+                    $ids = ArrayHelper::getColumn($cls, 'legal_subject_id');
+                    $val = '';
+                    if (!empty($ids)) {
+                        $ls = LegalSubject::getListByIds($ids);
+                        $val = implode(', ', $ls);
+                    }
+                    return $val;
+                },
+                'filterInputOptions' => [
+                    'class' => 'form-control form-control-sm',
+                ],
+            ],
 
             // Продавец
             [
