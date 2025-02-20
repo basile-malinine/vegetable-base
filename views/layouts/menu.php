@@ -2,6 +2,7 @@
 
 use yii\bootstrap5\Nav;
 use app\models\Company\Company;
+use app\models\LegalSubject\LegalSubject;
 
 echo Nav::widget([
     'options' => ['class' => 'navbar-nav ms-5'],
@@ -34,7 +35,7 @@ echo Nav::widget([
                 [
                     'label' => 'Доверенные лица контрагентов',
                     'url' => ['/company-legal-subject/index'],
-                    'disabled' => !(bool)Company::find()->count(),
+                    'disabled' => !(bool)Company::find()->count() || !(bool)LegalSubject::find()->count(),
                 ],
 
                 [
