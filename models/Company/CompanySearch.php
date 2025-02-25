@@ -69,6 +69,7 @@ class CompanySearch extends Company
         if (!isset($params['sort'])) {
             $query->orderBy('name');
         }
+
         return $dataProvider;
     }
 }

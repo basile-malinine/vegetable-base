@@ -72,11 +72,10 @@ $this->registerJsFile('@web/js/product.js');
 
             // Ед. изм.
             [
-                'attribute' => 'unit_id',
+                'attribute' => 'unit',
                 'enableSorting' => false,
-                'value' => function ($model) {
-                    return $model->unit->name;
-                },
+                'filter' => false,
+                'value' => 'unit.name',
                 'contentOptions' => [
                     'style' => 'width: 70px;',
                 ],
@@ -102,6 +101,5 @@ $this->registerJsFile('@web/js/product.js');
             ],
         ],
     ]); ?>
-
 
 </div>

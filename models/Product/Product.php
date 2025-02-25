@@ -28,6 +28,7 @@ class Product extends ActiveRecord
             'id' => 'ID',
             'name' => 'Наименование',
             'unit_id' => 'Ед. изм.',
+            'unit' => 'Ед. изм.',
             'weight' => 'Вес (кг)',
         ];
     }

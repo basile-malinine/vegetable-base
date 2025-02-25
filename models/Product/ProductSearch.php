@@ -11,7 +11,7 @@ class ProductSearch extends Product
     {
         return [
             [['id'], 'integer'],
-            [['name'], 'safe'],
+            [['name', 'unit'], 'safe'],
         ];
     }
 
@@ -31,9 +31,7 @@ class ProductSearch extends Product
     public function search($params)
     {
         $query = Product::find();
-        $query->with([
-            'unit',
-        ]);
+        $query->joinWith(['unit']);
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -42,19 +40,14 @@ class ProductSearch extends Product
         $this->load($params);
 
         if (!$this->validate()) {
-            // uncomment the following line if you do not want to return any records when validation fails
-            // $query->where('0=1');
             return $dataProvider;
         }
 
-        $query->andFilterWhere([
-            'id' => $this->id,
-            'unit_id' => $this->unit_id,
-        ]);
-
         $query->andFilterWhere(['like', 'name', $this->name]);
 
-//        $query->orderBy('name');
+        if (!isset($params['sort'])) {
+            $query->orderBy('name');
+        }
 
         return $dataProvider;
     }
