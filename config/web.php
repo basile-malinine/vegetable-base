@@ -89,6 +89,9 @@ $config = [
                 'company-legal-subject/<action:(edit)>/<id:\d+>/<company_id:\d+>' => 'company-legal-subject/<action>',
                 'company-legal-subject/<action:(delete)>/<id:\d+>' => 'company-legal-subject/<action>',
                 'company-legal-subject/<action:(delete)>/<id:\d+>/<company_id:\d+>' => 'company-legal-subject/<action>',
+
+                // ColorController Цвета
+                'color/<action:(edit|delete)>/<id:\d+>' => 'color/<action>',
             ],
         ],
     ],

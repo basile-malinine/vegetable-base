@@ -6,6 +6,8 @@ use app\models\LegalSubject\LegalSubject;
 
 echo Nav::widget([
     'options' => ['class' => 'navbar-nav ms-5'],
+    'encodeLabels' => false,
+
     'items' => [
         [
             'label' => 'Справочники',
@@ -18,6 +20,13 @@ echo Nav::widget([
                 [
                     'label' => 'Единицы измерения',
                     'url' => ['/unit/index'],
+                ],
+
+                '<hr class="dropdown-divider">',
+
+                [
+                    'label' => 'Цвета',
+                    'url' => '/color',
                 ],
 
                 '<hr class="dropdown-divider">',
