@@ -26,7 +26,7 @@ class ProductController extends EntityController
 
         if ($this->request->isPost) {
             if ($this->postRequestAnalysis($model)) {
-                $this->redirect(['index']);
+                $this->redirect(['product/edit/' . $model->id]);
             }
         } else {
             $model->loadDefaultValues();

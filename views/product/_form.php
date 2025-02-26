@@ -43,7 +43,7 @@ $weightDefault = Unit::findOne($unitDefault)->weight;
             ],
         ]); ?>
 
-        <div class="row form-row">
+        <div class="row <?= Yii::$app->requestedAction->id == 'create' ? 'form-last-row' : 'form-row' ?>">
             <!-- Наименование -->
             <div class="form-col col-4">
                 <?= $form->field($model, 'name')->textInput([
