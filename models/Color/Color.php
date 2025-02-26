@@ -36,4 +36,14 @@ class Color extends ActiveRecord
             ->orderBy(['value' => SORT_ASC])
             ->column();
     }
+
+    public static function getListByIds($ids)
+    {
+        return self::find()
+            ->select(['value', 'id'])
+            ->where(['id' => $ids])
+            ->indexBy('id')
+            ->orderBy(['value' => SORT_ASC])
+            ->column();
+    }
 }

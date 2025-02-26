@@ -2,6 +2,7 @@
 
 namespace app\models\Product;
 
+use app\models\ProductColor\ProductColor;
 use yii\db\ActiveRecord;
 use app\models\Unit\Unit;
 
@@ -46,5 +47,19 @@ class Product extends ActiveRecord
     public function getUnit()
     {
         return $this->hasOne(Unit::class, ['id' => 'unit_id']);
+    }
+
+    public function getProduct_color()
+    {
+        return $this->hasMany(ProductColor::class, ['product_id' => 'id']);
+    }
+
+    public static function getList()
+    {
+        return self::find()
+            ->select(['name', 'id'])
+            ->indexBy('id')
+            ->orderBy(['name' => SORT_ASC])
+            ->column();
     }
 }

@@ -70,7 +70,7 @@ $config = [
                 // ProductController Продукты
                 'product/<action:(edit|delete)>/<id:\d+>' => 'product/<action>',
 
-                // LegalSubjectController Доверенные лица
+                // LegalSubjectController Юридические / физические лица
                 'legal-subject/<action:(edit|delete)>/<id:\d+>' => 'legal-subject/<action>',
 
                 // CompanyController Контрагенты
@@ -78,20 +78,21 @@ $config = [
 
                 // CompanyAliasController Псевдонимы контрагентов
                 'company-alias/<action:(index|create)>/<company_id:\d+>' => 'company-alias/<action>',
-                'company-alias/<action:(edit)>/<id:\d+>' => 'company-alias/<action>',
-                'company-alias/<action:(edit)>/<id:\d+>/<company_id:\d+>' => 'company-alias/<action>',
-                'company-alias/<action:(delete)>/<id:\d+>' => 'company-alias/<action>',
-                'company-alias/<action:(delete)>/<id:\d+>/<company_id:\d+>' => 'company-alias/<action>',
+                'company-alias/<action:(edit|delete)>/<id:\d+>' => 'company-alias/<action>',
+                'company-alias/<action:(edit|delete)>/<id:\d+>/<company_id:\d+>' => 'company-alias/<action>',
 
-                // CompanyLegalSubjectController Доверенные лица
+                // CompanyLegalSubjectController Доверенные лица контрагентов
                 'company-legal-subject/<action:(index|create)>/<company_id:\d+>' => 'company-legal-subject/<action>',
-                'company-legal-subject/<action:(edit)>/<id:\d+>' => 'company-legal-subject/<action>',
-                'company-legal-subject/<action:(edit)>/<id:\d+>/<company_id:\d+>' => 'company-legal-subject/<action>',
-                'company-legal-subject/<action:(delete)>/<id:\d+>' => 'company-legal-subject/<action>',
-                'company-legal-subject/<action:(delete)>/<id:\d+>/<company_id:\d+>' => 'company-legal-subject/<action>',
+                'company-legal-subject/<action:(edit|delete)>/<id:\d+>' => 'company-legal-subject/<action>',
+                'company-legal-subject/<action:(edit|delete)>/<id:\d+>/<company_id:\d+>' => 'company-legal-subject/<action>',
 
                 // ColorController Цвета
                 'color/<action:(edit|delete)>/<id:\d+>' => 'color/<action>',
+
+                // ProductColorController Цвета продуктов
+                'product-color/<action:(index|create)>/<product_id:\d+>' => 'product-color/<action>',
+                'product-color/<action:(edit|delete)>/<id:\d+>' => 'product-color/<action>',
+                'product-color/<action:(edit|delete)>/<id:\d+>/<product_id:\d+>' => 'product-color/<action>',
             ],
         ],
     ],
