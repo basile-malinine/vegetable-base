@@ -35,14 +35,16 @@ class ColorSearch extends Color
             'query' => $query,
         ]);
 
-        if (!($this->load($params) && $this->validate())) {
+        $dataProvider->sort->attributes['value'] = [
+            'desc' => ['value' => SORT_DESC],
+            'asc' => ['value' => SORT_ASC],
+            'default' => SORT_DESC,
+        ];
+
+        $this->load($params);
+        if (!$this->validate()) {
             return $dataProvider;
         }
-
-        // grid filtering conditions
-        $query->andFilterWhere([
-            'id' => $this->id,
-        ]);
 
         if (!isset($params['sort'])) {
             $query->orderBy('value');

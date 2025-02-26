@@ -47,7 +47,7 @@ $this->registerJsFile('@web/js/color.js');
             // Имя
             [
                 'attribute' => 'value',
-                'enableSorting' => false,
+                'enableSorting' => true,
                 'headerOptions' => [
                     'style' => 'width: 240px;'
                 ],
