@@ -5,7 +5,6 @@ namespace app\controllers;
 use app\models\Company\Company;
 use app\models\Company\CompanyLegalSubject;
 use app\models\Company\CompanyLegalSubjectSearch;
-use app\models\LegalSubject\LegalSubject;
 use yii\web\NotFoundHttpException;
 
 class CompanyLegalSubjectController extends EntityController
