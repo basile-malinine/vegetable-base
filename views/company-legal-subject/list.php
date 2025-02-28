@@ -33,7 +33,7 @@ $this->registerJsFile('@web/js/company-legal-subject.js');
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
+        'filterModel' => !$company_id ? $searchModel : null,
 
         'rowOptions' => function ($model, $key, $index, $grid) {
             $company_id = Yii::$app->request->get('company_id');

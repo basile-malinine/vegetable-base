@@ -53,7 +53,7 @@ use yii\bootstrap5\Html;
             <?= Html::submitButton(
                 'Войти',
                 [
-                    'class' => 'btn btn-light btn-outline-secondary btn-sm',
+                    'class' => 'btn btn-light btn-outline-primary btn-sm',
                     'name' => 'login-button',
                     'style' => 'width: 100px'
                 ]) ?>
