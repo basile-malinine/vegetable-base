@@ -3,6 +3,7 @@
 use yii\bootstrap5\Nav;
 use app\models\Company\Company;
 use app\models\LegalSubject\LegalSubject;
+use app\models\Product\Product;
 
 echo Nav::widget([
     'options' => ['class' => 'navbar-nav ms-5'],
@@ -14,15 +15,21 @@ echo Nav::widget([
             'items' => [
                 [
                     'label' => 'Продукты',
-                    'url' => ['/product/index'],
+                    'url' => ['/product'],
                 ],
 
                 [
-                    'label' => 'Единицы измерения',
-                    'url' => ['/unit/index'],
+                    'label' => 'Номенклатура',
+                    'url' => ['/assortment'],
+                    'disabled' => Product::find()->count() === 0,
                 ],
 
                 '<hr class="dropdown-divider">',
+
+                [
+                    'label' => 'Единицы измерения',
+                    'url' => ['/unit'],
+                ],
 
                 [
                     'label' => 'Цвета',
@@ -37,19 +44,19 @@ echo Nav::widget([
 
                 [
                     'label' => 'Псевдонимы контрагентов',
-                    'url' => ['/company-alias/index'],
+                    'url' => ['/company-alias'],
                     'disabled' => !(bool)Company::find()->count(),
                 ],
 
                 [
                     'label' => 'Доверенные лица контрагентов',
-                    'url' => ['/company-legal-subject/index'],
+                    'url' => ['/company-legal-subject'],
                     'disabled' => !(bool)Company::find()->count() || !(bool)LegalSubject::find()->count(),
                 ],
 
                 [
                     'label' => 'Юридические / Физические лица',
-                    'url' => ['/legal-subject/index'],
+                    'url' => ['/legal-subject'],
                 ],
             ],
         ],

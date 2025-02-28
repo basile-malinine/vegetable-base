@@ -260,6 +260,10 @@ label {
     font-size: 14px;
 }
 
+.select2-selection__clear {
+    margin-right: 8px;
+}
+
 /*
 
 .select2-container--krajee-bs5 .select2-selection__clear {

@@ -2,8 +2,7 @@
 
 namespace app\controllers;
 
-use yii\web\Controller;
-use yii\db\IntegrityException;
+use yii\web\Response;
 use yii\web\NotFoundHttpException;
 use app\models\Product\Product;
 use app\models\Product\ProductSearch;
@@ -47,6 +46,19 @@ class ProductController extends EntityController
         }
 
         return $this->render('edit', compact('model', 'header'));
+    }
+
+    public function actionGetColors()
+    {
+        $id = \Yii::$app->request->post('id');
+        \Yii::$app->response->format = Response::FORMAT_JSON;
+        $colors = Product::getColorListByProductId($id);
+        $ret = [];
+        foreach ($colors as $key => $color) {
+            $ret[] = ['value' => $key, 'text' => $color];
+        }
+
+        return $ret;
     }
 
     protected function findModel($id)

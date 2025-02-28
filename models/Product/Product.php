@@ -2,8 +2,10 @@
 
 namespace app\models\Product;
 
-use app\models\ProductColor\ProductColor;
 use yii\db\ActiveRecord;
+use yii\helpers\ArrayHelper;
+use app\models\Color\Color;
+use app\models\ProductColor\ProductColor;
 use app\models\Unit\Unit;
 
 class Product extends ActiveRecord
@@ -61,5 +63,17 @@ class Product extends ActiveRecord
             ->indexBy('id')
             ->orderBy(['name' => SORT_ASC])
             ->column();
+    }
+
+    public static function getColorListByProductId($id)
+    {
+        $model = self::findOne(['id' => $id]);
+        if (isset($model->product_color)) {
+            $colorIds = ArrayHelper::getColumn($model->product_color, 'color_id');
+        } else {
+            $colorIds = null;
+        }
+
+        return Color::getListByIds($colorIds);
     }
 }

@@ -70,6 +70,9 @@ $config = [
                 // ProductController Продукты
                 'product/<action:(edit|delete)>/<id:\d+>' => 'product/<action>',
 
+                // AssortmentController Номенклатура
+                'assortment/<action:(edit|delete)>/<id:\d+>' => 'assortment/<action>',
+
                 // LegalSubjectController Юридические / физические лица
                 'legal-subject/<action:(edit|delete)>/<id:\d+>' => 'legal-subject/<action>',
 
