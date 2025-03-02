@@ -18,10 +18,8 @@ class Product extends ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'unit_id'], 'required'],
-            [['unit_id'], 'integer'],
+            [['name'], 'required'],
             [['name'], 'string', 'max' => 100],
-            [['weight'], 'number', 'numberPattern' => '/^\d+(.\d+)?$/'],
         ];
     }
 
@@ -30,25 +28,7 @@ class Product extends ActiveRecord
         return [
             'id' => 'ID',
             'name' => 'Наименование',
-            'unit_id' => 'Ед. изм.',
-            'unit' => 'Ед. изм.',
-            'weight' => 'Вес (кг)',
         ];
-    }
-
-    public function beforeSave($insert)
-    {
-        if (!parent::beforeSave($insert)) {
-            return false;
-        }
-        $this->weight = str_replace(',', '.', $this->weight);
-
-        return true;
-    }
-
-    public function getUnit()
-    {
-        return $this->hasOne(Unit::class, ['id' => 'unit_id']);
     }
 
     public function getProduct_color()

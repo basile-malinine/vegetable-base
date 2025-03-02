@@ -15,12 +15,6 @@ $this->registerCssFile('@web/css/company.css');
 
 // 'create' или 'edit'
 $action = Yii::$app->controller->action->id;
-// Список Ед. изм. для формы
-$unitList = Unit::getList();
-// Вычисляем значение по умолчанию в списке
-$unitDefault = array_keys($unitList)[0];
-// Вес у Ед. изм. по умолчанию (если весовая, должен быть вес)
-$weightDefault = Unit::findOne($unitDefault)->weight;
 ?>
 
 <div class="page-top-panel">
@@ -50,38 +44,6 @@ $weightDefault = Unit::findOne($unitDefault)->weight;
                     'maxlength' => true,
                 ]) ?>
             </div>
-
-            <!-- Ед. изм. -->
-            <div class="form-col col-2">
-                <?= $form->field($model, 'unit_id')->dropDownList(Unit::getList(), [
-                    'onchange' => '
-                        let weights = ' . json_encode(
-                            Unit::find()
-                                ->select(['weight'])
-                                ->where('is_weight')
-                                ->indexBy('id')
-                                ->column()
-                        ) . ';
-                        let weight = weights[this.value];
-                        let isWeight = Boolean(weights[this.value]);
-                        $("#product-weight").val(weight);
-                        $("#product-weight").attr("readonly", isWeight);
-                    ',
-                ]) ?>
-            </div>
-
-            <!-- Вес -->
-            <div class="form-col col-2">
-                <?= $form->field($model, 'weight')->textInput([
-                    'readonly' => $action === 'create'
-                        ? (bool)$weightDefault
-                        : (bool)$model->unit->is_weight,
-                    'value' => $action === 'create'
-                        ? $weightDefault
-                        : $model->unit->weight,
-                ]) ?>
-            </div>
-        </div>
 
         <!-- При создании не отображается -->
         <div class="row form-last-row" <?= Yii::$app->requestedAction->id == 'create' ? 'hidden' : '' ?>>

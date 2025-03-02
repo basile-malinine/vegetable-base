@@ -35,25 +35,14 @@ $this->registerJsFile('@web/js/product.js');
         },
 
         'columns' => [
-            // Весовой / не весовой (иконка)
-            [
-                'format' => 'raw',
-                'value' => function ($model) {
-                    return $model->unit->is_weight ? '<i class="fas fa-balance-scale"></i>' : '';
-                },
-                'contentOptions' => [
-                    'style' => 'color: #0077ff; text-align: center',
-                ],
-                'headerOptions' => [
-                    'style' => 'width: 30px;',
-                ],
-            ],
-
             // ID
             [
                 'attribute' => 'id',
                 'contentOptions' => [
-                    'style' => 'text-align: right; width: 50px;'
+                    'style' => 'text-align: right;'
+                ],
+                'headerOptions' => [
+                    'style' => 'width: 50px;'
                 ],
                 'filter' => false,
             ],
@@ -62,35 +51,12 @@ $this->registerJsFile('@web/js/product.js');
             [
                 'attribute' => 'name',
                 'enableSorting' => true,
-                'contentOptions' => [
+                'headerOptions' => [
                     'style' => 'width: 350px;'
                 ],
                 'filterInputOptions' => [
                     'class' => 'form-control form-control-sm'
                 ],
-            ],
-
-            // Ед. изм.
-            [
-                'attribute' => 'unit',
-                'enableSorting' => false,
-                'filter' => false,
-                'value' => 'unit.name',
-                'contentOptions' => [
-                    'style' => 'width: 70px;',
-                ],
-            ],
-
-            // Вес
-            [
-                'attribute' => 'weight',
-                'enableSorting' => false,
-                'contentOptions' => [
-                    'style' => 'width: 100px; text-align: right;',
-                ],
-                'value' => function ($model) {
-                    return $model->weight ?: '';
-                },
             ],
 
             // Пустота

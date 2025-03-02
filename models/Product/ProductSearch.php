@@ -10,8 +10,7 @@ class ProductSearch extends Product
     public function rules()
     {
         return [
-            [['id'], 'integer'],
-            [['name', 'unit'], 'safe'],
+            [['name'], 'safe'],
         ];
     }
 
@@ -31,7 +30,6 @@ class ProductSearch extends Product
     public function search($params)
     {
         $query = Product::find();
-        $query->joinWith(['unit']);
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
