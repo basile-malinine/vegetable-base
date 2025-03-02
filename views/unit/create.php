@@ -1,15 +1,10 @@
 <?php
 
-use yii\helpers\Html;
+use app\models\Unit\Unit;
 
 /** @var yii\web\View $this */
-/** @var \app\models\Unit\Unit $model */
+/** @var Unit $model */
 /** @var string $header */
 ?>
-<div class="unit-create">
 
-    <h1><?= Html::encode($this->title) ?></h1>
-
-    <?= $this->render('_form', compact('model', 'header')) ?>
-
-</div>
+<?= $this->render('_form', compact('model', 'header')) ?>

@@ -8,6 +8,4 @@ use app\models\ProductColor\ProductColor;
 /** @var string $product_id */
 ?>
 
-<div class="unit-create">
-    <?= $this->render('_form', compact('model', 'header', 'product_id')) ?>
-</div>
+<?= $this->render('_form', compact('model', 'header', 'product_id')) ?>

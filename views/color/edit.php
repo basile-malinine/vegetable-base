@@ -1,10 +1,10 @@
 <?php
 
+use app\models\Color\Color;
+
 /** @var yii\web\View $this */
-/** @var \app\models\Color\Color $model */
+/** @var Color $model */
 /** @var string $header */
 ?>
 
-<div class="unit-update">
-    <?= $this->render('_form', compact('model', 'header')) ?>
-</div>
+<?= $this->render('_form', compact('model', 'header')) ?>

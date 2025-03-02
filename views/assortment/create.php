@@ -7,6 +7,4 @@ use app\models\Assortment\Assortment;
 /** @var string $header */
 ?>
 
-<div class="unit-create">
-    <?= $this->render('_form', compact('model', 'header')) ?>
-</div>
+<?= $this->render('_form', compact('model', 'header')) ?>

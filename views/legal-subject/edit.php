@@ -1,10 +1,10 @@
 <?php
 
+use app\models\LegalSubject\LegalSubject;
+
 /** @var yii\web\View $this */
-/** @var \app\models\Unit\Unit $model */
+/** @var LegalSubject $model */
 /** @var string $header */
 ?>
 
-<div class="unit-update">
-    <?= $this->render('_form', compact('model', 'header')) ?>
-</div>
+<?= $this->render('_form', compact('model', 'header')) ?>
