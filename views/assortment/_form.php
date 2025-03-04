@@ -12,6 +12,7 @@ use kartik\select2\Select2;
 use app\models\Assortment\Assortment;
 use app\models\Product\Product;
 
+$actionId = Yii::$app->requestedAction->id;
 ?>
 
 <div class="page-top-panel">
@@ -34,7 +35,7 @@ use app\models\Product\Product;
             ],
         ]); ?>
 
-        <div class="row <?= Yii::$app->requestedAction->id == 'create' ? 'form-last-row' : 'form-row' ?>">
+        <div class="row <?= $actionId == 'create' ? 'form-last-row' : 'form-row' ?>">
 
             <div class="row">
                 <!-- Базовый продукт -->
@@ -72,7 +73,7 @@ use app\models\Product\Product;
         </div>
 
         <!-- При создании не отображается -->
-        <div class="row form-last-row" <?= Yii::$app->requestedAction->id == 'create' ? 'hidden' : '' ?>>
+        <div class="row form-last-row" <?= $actionId == 'create' ? 'hidden' : '' ?>>
             <!-- Цвет -->
             <div class="row">
                 <div class="form-col col-3">
