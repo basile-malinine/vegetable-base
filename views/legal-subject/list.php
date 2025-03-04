@@ -8,7 +8,8 @@ use app\models\LegalSubject\LegalSubjectSearch;
 /** @var LegalSubjectSearch $searchModel */
 /** @var string $header */
 
-$this->registerJsFile('@web/js/legal-subject.js');
+$this->registerJs('let controllerName = "legal-subject";', \yii\web\View::POS_HEAD);
+$this->registerJsFile('@web/js/contextmenu-list.js');
 
 ?>
 <div class="page-content">

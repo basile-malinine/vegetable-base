@@ -12,7 +12,8 @@ use app\models\LegalSubject\LegalSubject;
 /** @var CompanySearch $searchModel */
 /** @var string $header */
 
-$this->registerJsFile('@web/js/company.js');
+$this->registerJs('let controllerName = "company";', \yii\web\View::POS_HEAD);
+$this->registerJsFile('@web/js/contextmenu-list.js');
 
 ?>
 <div class="page-content">

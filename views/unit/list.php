@@ -7,7 +7,8 @@ use yii\grid\GridView;
 /** @var yii\data\ActiveDataProvider $dataProvider */
 /** @var string $header */
 
-$this->registerJsFile('@web/js/unit.js');
+$this->registerJs('let controllerName = "unit";', \yii\web\View::POS_HEAD);
+$this->registerJsFile('@web/js/contextmenu-list.js');
 
 ?>
 <div class="page-content">

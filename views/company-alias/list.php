@@ -9,7 +9,8 @@ use app\models\Company\CompanyAliasSearch;
 /** @var string $header */
 /** @var integer $company_id */
 
-$this->registerJsFile('@web/js/company-alias.js');
+$this->registerJs('let controllerName = "company-alias";', \yii\web\View::POS_HEAD);
+$this->registerJsFile('@web/js/contextmenu-list.js');
 
 ?>
 <div class="page-content">

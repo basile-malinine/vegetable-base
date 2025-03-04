@@ -9,7 +9,8 @@ use app\models\Assortment\AssortmentSearch;
 /** @var AssortmentSearch $searchModel */
 /** @var string $header */
 
-$this->registerJsFile('@web/js/assortment.js');
+$this->registerJs('let controllerName = "assortment";', \yii\web\View::POS_HEAD);
+$this->registerJsFile('@web/js/contextmenu-list.js');
 
 ?>
 <div class="page-content">

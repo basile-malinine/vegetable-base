@@ -2,7 +2,7 @@ $(document).ready(function () {
     // обработка двойного клика на запись в таблице
     $('.contextMenuRow').on('dblclick', function () {
         let rowId = $(this).attr('data-row-id');
-        $(location).attr('href', "/company/edit/" + rowId);
+        $(location).attr('href', "/" + controllerName + "/edit/" + rowId);
     });
 
     // инициализация контекстного меню для таблицы с данными
@@ -15,7 +15,7 @@ $(document).ready(function () {
                 name: 'Редактировать',
                 iconClass: 'fa-pen',
                 onClick: (id) => {
-                    document.location.href = "/company/edit/" + id;
+                    document.location.href = "/" + controllerName + "/edit/" + id;
                 }
             },
             {
@@ -23,7 +23,7 @@ $(document).ready(function () {
                 iconClass: 'fa-trash-alt',
                 onClick: (id) => {
                     if (confirm("Вы точно хотите удалить запись?")) {
-                        document.location.href = "/company/delete/" + id;
+                        document.location.href = "/" + controllerName + "/delete/" + id;
                     }
                 }
             }

@@ -9,7 +9,8 @@ use app\models\ProductColor\ProductColorSearch;
 /** @var string $header */
 /** @var integer $product_id */
 
-$this->registerJsFile('@web/js/product-color.js');
+$this->registerJs('let controllerName = "product-color";', \yii\web\View::POS_HEAD);
+$this->registerJsFile('@web/js/contextmenu-list.js');
 
 ?>
 <div class="page-content">

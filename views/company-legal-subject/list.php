@@ -9,7 +9,8 @@ use app\models\Company\CompanyLegalSubjectSearch;
 /** @var string $header */
 /** @var integer $company_id */
 
-$this->registerJsFile('@web/js/company-legal-subject.js');
+$this->registerJs('let controllerName = "company-legal-subject";', \yii\web\View::POS_HEAD);
+$this->registerJsFile('@web/js/contextmenu-list.js');
 
 ?>
 <div class="page-content">
