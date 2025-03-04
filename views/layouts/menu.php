@@ -27,6 +27,11 @@ echo Nav::widget([
                 '<hr class="dropdown-divider">',
 
                 [
+                    'label' => 'Страны',
+                    'url' => ['/country'],
+                ],
+
+                [
                     'label' => 'Единицы измерения',
                     'url' => ['/unit'],
                 ],

@@ -5,7 +5,7 @@ $db = require __DIR__ . '/db.php';
 
 $config = [
     'id' => 'basic',
-    'name' => 'АПК ТЕХНОЛОГИИ',
+    'name' => 'АПК-ТЕХНОЛОГИИ',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'language' => 'ru-RU',
@@ -96,6 +96,9 @@ $config = [
                 'product-color/<action:(index|create)>/<product_id:\d+>' => 'product-color/<action>',
                 'product-color/<action:(edit|delete)>/<id:\d+>' => 'product-color/<action>',
                 'product-color/<action:(edit|delete)>/<id:\d+>/<product_id:\d+>' => 'product-color/<action>',
+
+                // CountryController Страны
+                'country/<action:(edit|delete)>/<id:\d+>' => 'country/<action>',
             ],
         ],
     ],
