@@ -8,7 +8,7 @@ class m250304_044202_create_table_country extends Migration
     {
         $this->createTable('country', [
             'id' => $this->primaryKey(),
-            'name' => $this->string(30)->notNull()->unique(),
+            'name' => $this->string(30)->notNull()->unique()->comment('Название'),
         ]);
     }
 
