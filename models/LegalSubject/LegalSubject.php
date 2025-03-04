@@ -3,6 +3,7 @@
 namespace app\models\LegalSubject;
 
 use app\models\Company\CompanyLegalSubject;
+use app\models\Country\Country;
 use yii\db\ActiveQuery;
 use yii\db\ActiveRecord;
 
@@ -19,9 +20,12 @@ class LegalSubject extends ActiveRecord
             [['name', 'full_name', 'is_legal'], 'required'],
             [['name'], 'string', 'min' => 1, 'max' => 30],
             [['full_name'], 'string', 'min' => 1, 'max' => 100],
-            [['inn'], 'string', 'min' => 10, 'max' => 12],
-            [['inn'], 'unique'],
+            [['country_id'], 'integer'],
+            [['inn'], 'string', 'min' => 9, 'max' => 12],
+            [['inn'], 'unique', 'targetAttribute' => ['inn', 'country_id'],
+                'message' => 'Комбинация {attribute} и Страна уже существует'],
             [['is_legal'], 'boolean'],
+            [['comment'], 'string'],
         ];
     }
 
@@ -29,16 +33,26 @@ class LegalSubject extends ActiveRecord
     {
         return [
             'id' => 'ID',
+            'country_id' => 'Страна',
+            'country' => 'Страна',
             'is_legal' => 'Юридическое лицо',
             'name' => 'Название или ФИО',
             'full_name' => 'Полное название или ФИО',
             'inn' => 'ИНН',
+            'director' => 'Директор',
+            'accountant' => 'Бухгалтер',
+            'comment' => 'Комментарий',
         ];
     }
 
     public function getCompany_legal_subject()
     {
         return $this->hasMany(CompanyLegalSubject::class, ['legal_subject_id' => 'id']);
+    }
+
+    public function getCountry()
+    {
+        return $this->hasOne(Country::class, ['id' => 'country_id']);
     }
 
     public static function getList(): array

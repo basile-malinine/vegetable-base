@@ -2,6 +2,8 @@
 
 use yii\bootstrap5\ActiveForm;
 use yii\bootstrap5\Html;
+use kartik\select2\Select2;
+use app\models\Country\Country;
 use app\models\LegalSubject\LegalSubject;
 
 /** @var yii\web\View $this */
@@ -9,6 +11,13 @@ use app\models\LegalSubject\LegalSubject;
 /** @var LegalSubject $model */
 /** @var string $header */
 
+$actionId = Yii::$app->requestedAction->id;
+$innName = 'ИНН';
+$isLegal = true;
+if ($actionId == 'edit') {
+    $innName = $model->is_legal ? $model->country->inn_legal_name : $model->country->inn_name;
+    $isLegal = (bool)$model->is_legal;
+}
 ?>
 
 <div class="page-top-panel">
@@ -32,48 +41,99 @@ use app\models\LegalSubject\LegalSubject;
         ]); ?>
 
         <div class="row form-row">
-            <!-- Юридическое лицо -->
-            <div class="form-col col-3">
-                <?= $form->field($model, 'is_legal')->checkbox(
-                    [
+            <!-- Страна -->
+            <div class="form-col col-4">
+                <?= $form->field($model, 'country_id')->widget(Select2::class, [
+                    'data' => Country::getList(),
+                    'options' => [
                         'onchange' => '
-                            let labelName = $(".field-legalsubject-name > .col-form-label")[0];
-                            let labelFullName = $(".field-legalsubject-full_name > .col-form-label")[0];
-                            console.log($(this).val());
-                            if ($(this).prop("checked")) {
-                                labelName.innerText = "Название организации";
-                                labelFullName.innerText = "Полное название организации";
-                            } else {
-                                labelName.innerText = "ФИО";
-                                labelFullName.innerText = "ФИО (полностью)";
-                            }',
-                    ]
-                ) ?>
+                            let isLegalField = $("#legalsubject-is_legal");
+                            let labelInnField = $(".field-legalsubject-inn > .col-form-label")[0];
+                            $.post(
+                                "/country/get-inn-name", 
+                                {id: $(this).val(), isLegal: isLegalField.val()}, 
+                                (data) => {
+                                    labelInnField.innerText = data;
+                                }
+                            );
+                        ',
+                    ],
+                ]); ?>
             </div>
         </div>
 
         <div class="row form-row">
+            <!-- Тип -->
+            <div class="form-col col-2">
+                <?= $form->field($model, 'is_legal')->widget(Select2::class, [
+                    'data' => [0 => 'Физическое лицо', 1 => 'Юридическое лицо'],
+                    'hideSearch' => true,
+                    'options' => [
+                        'onchange' => '
+                            let countryIdField = $("#legalsubject-country_id");
+                            let labelInnField = $(".field-legalsubject-inn > .col-form-label")[0];
+                            let labelNameField = $(".field-legalsubject-name > .col-form-label")[0];
+                            let labelFullNameField = $(".field-legalsubject-full_name > .col-form-label")[0];
+                            
+                            $.post(
+                                "/country/get-inn-name", 
+                                {
+                                    id: countryIdField.val(),
+                                    isLegal: $(this).val()
+                                }, 
+                                (data) => {
+                                    labelInnField.innerText = data;
+                                }
+                            );
+                            
+                            if ($(this).val() == 1) {
+                                $(".form-row-legal").removeClass("d-none");
+                                labelNameField.innerText = "Название организации";
+                                labelFullNameField.innerText = "Полное название организации";
+                            } else {
+                                $(".form-row-legal").addClass("d-none");
+                                labelNameField.innerText = "ФИО";
+                                labelFullNameField.innerText = "ФИО (полностью)";
+                            }',
+                    ],
+                ])->label('Тип'); ?>
+            </div>
+
+            <!-- ИНН -->
+            <div class="form-col col-2">
+                <?= $form->field($model, 'inn')->textInput(['maxlength' => true])->label($innName) ?>
+            </div>
+
             <!-- Название или ФИО -->
             <div class="form-col col-2">
-                <?= $form->field($model, 'name')->textInput([
-                    'maxlength' => true,
-                ])->label($model->is_legal ? 'Название организации' : 'ФИО') ?>
+                <?= $form->field($model, 'name')->textInput(['maxlength' => true])
+                    ->label($model->is_legal ? 'Название организации' : 'ФИО') ?>
             </div>
 
             <!-- Полное название или ФИО -->
             <div class="form-col col-6">
-                <?= $form->field($model, 'full_name')->textInput([
-                    'maxlength' => true,
-                ])->label($model->is_legal ? 'Полное название организации' : 'ФИО (полностью)') ?>
+                <?= $form->field($model, 'full_name')->textInput(['maxlength' => true])
+                    ->label($model->is_legal ? 'Полное название организации' : 'ФИО (полностью)') ?>
+            </div>
+        </div>
+
+        <div class="row form-row form-row-legal <?= !$isLegal ? 'd-none' : '' ?>">
+            <!-- Директор -->
+            <div class="form-col col-4">
+                <?= $form->field($model, 'director')->textInput(['maxlength' => true]) ?>
+            </div>
+
+            <!-- Бухгалтер -->
+            <div class="form-col col-4">
+                <?= $form->field($model, 'accountant')->textInput(['maxlength' => true]) ?>
             </div>
         </div>
 
         <div class="row form-last-row">
-            <!-- ИНН -->
-            <div class="form-col col-2">
-                <?= $form->field($model, 'inn')->textInput([
-                    'maxlength' => true,
-                ]) ?>
+            <!-- Комментарий -->
+            <div class="form-col col-12">
+                <?= $form->field($model, 'comment')->textarea()
+                    ->label() ?>
             </div>
         </div>
 

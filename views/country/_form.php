@@ -3,6 +3,7 @@
 /** @var yii\web\View $this */
 /** @var yii\bootstrap5\ActiveForm $form */
 /** @var Country $model */
+
 /** @var string $header */
 
 use yii\bootstrap5\ActiveForm;
@@ -31,14 +32,30 @@ use app\models\Country\Country;
             ],
         ]); ?>
 
-        <div class="row form-last-row">
+        <div class="row form-row">
             <!-- Название -->
-            <div class="form-col col-3">
-                <?= $form->field($model, 'name')->textInput(
-                    [
-                        'maxlength' => true,
-                    ]
-                ) ?>
+            <div class="form-col col-4">
+                <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
+            </div>
+        </div>
+        <div class="row form-row">
+            <!-- Название ID для Юр. лиц -->
+            <div class="form-col col-2">
+                <?= $form->field($model, 'inn_legal_name')->textInput(['maxlength' => true]) ?>
+            </div>
+            <!-- Ширина ID для Юр. лиц -->
+            <div class="form-col col-2">
+                <?= $form->field($model, 'inn_legal_size')->textInput() ?>
+            </div>
+        </div>
+        <div class="row form-last-row">
+            <!-- Название ID для Физ. лиц -->
+            <div class="form-col col-2">
+                <?= $form->field($model, 'inn_name')->textInput(['maxlength' => true]) ?>
+            </div>
+            <!-- Ширина ID для Физ. лиц -->
+            <div class="form-col col-2">
+                <?= $form->field($model, 'inn_size')->textInput() ?>
             </div>
         </div>
 

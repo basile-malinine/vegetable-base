@@ -75,12 +75,21 @@ $this->registerJsFile('@web/js/contextmenu-list.js');
             // ИНН
             [
                 'attribute' => 'inn',
+                'label' => 'Идентификатор',
                 'enableSorting' => false,
-                'value' => function ($model) {
-                    return $model->inn ?: '';
-                },
                 'headerOptions' => [
-                    'style' => 'width: 100px;'
+                    'style' => 'width: 180px;'
+                ],
+                'filterInputOptions' => [
+                    'class' => 'form-control form-control-sm',
+                ],
+            ],
+
+            [
+                'attribute' => 'country',
+                'value' => 'country.name',
+                'headerOptions' => [
+                    'style' => 'width: 240px;'
                 ],
                 'filterInputOptions' => [
                     'class' => 'form-control form-control-sm',

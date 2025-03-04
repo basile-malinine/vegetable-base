@@ -3,7 +3,6 @@
 /** @var yii\web\View $this */
 /** @var yii\bootstrap5\ActiveForm $form */
 /** @var Assortment $model */
-
 /** @var string $header */
 
 use yii\bootstrap5\ActiveForm;
