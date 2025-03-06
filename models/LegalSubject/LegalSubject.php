@@ -21,12 +21,21 @@ class LegalSubject extends ActiveRecord
             [['name'], 'string', 'min' => 1, 'max' => 30],
             [['full_name'], 'string', 'min' => 1, 'max' => 100],
             [['country_id'], 'integer'],
-            [['inn'], 'string', 'min' => 9, 'max' => 12],
-            [['inn'], 'unique', 'targetAttribute' => ['inn', 'country_id'],
+            [['inn'], 'unique', 'targetAttribute' => ['inn' , 'country_id'],
                 'message' => 'Комбинация {attribute} и Страна уже существует'],
             [['is_legal'], 'boolean'],
             [['comment'], 'string'],
+            [['inn'], 'checkInnForCountry']
         ];
+    }
+
+    public function checkInnForCountry($attribute, $param): void
+    {
+        $innName = $this->is_legal ? $this->country->inn_legal_name : $this->country->inn_name;
+        $innSize = $this->is_legal ? $this->country->inn_legal_size : $this->country->inn_size;
+        if (mb_strlen($this->inn) !== $innSize) {
+            $this->addError('inn', 'Размер поля ' . $innName . ' ' . $innSize . ' знаков!');
+        }
     }
 
     public function attributeLabels(): array

@@ -11,10 +11,9 @@ use app\models\LegalSubject\LegalSubject;
 /** @var LegalSubject $model */
 /** @var string $header */
 
-$actionId = Yii::$app->requestedAction->id;
 $innName = 'ИНН';
 $isLegal = true;
-if ($actionId == 'edit') {
+if (isset($model->is_legal) && isset($model->country)) {
     $innName = $model->is_legal ? $model->country->inn_legal_name : $model->country->inn_name;
     $isLegal = (bool)$model->is_legal;
 }
