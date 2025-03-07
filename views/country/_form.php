@@ -3,12 +3,16 @@
 /** @var yii\web\View $this */
 /** @var yii\bootstrap5\ActiveForm $form */
 /** @var Country $model */
-
 /** @var string $header */
 
 use yii\bootstrap5\ActiveForm;
 use yii\bootstrap5\Html;
 use app\models\Country\Country;
+
+$this->registerCssFile('https://cdn.jsdelivr.net/npm/suggestions-jquery@21.12.0/dist/css/suggestions.min.css');
+$this->registerJsFile('https://cdn.jsdelivr.net/npm/suggestions-jquery@21.12.0/dist/js/jquery.suggestions.min.js',
+    ['position' => \yii\web\View::POS_END]);
+$this->registerJsFile('@web/js/dadata.countryform.js', ['position' => \yii\web\View::POS_END]);
 
 ?>
 
@@ -34,8 +38,13 @@ use app\models\Country\Country;
 
         <div class="row form-row">
             <!-- Название -->
-            <div class="form-col col-4">
+            <div class="form-col col-3">
                 <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
+            </div>
+
+            <!-- Полное название -->
+            <div class="form-col col-6">
+                <?= $form->field($model, 'full_name')->textInput(['maxlength' => true]) ?>
             </div>
         </div>
         <div class="row form-row">

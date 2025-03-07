@@ -16,14 +16,15 @@ class Country extends ActiveRecord
     {
         return [
             [['name'], 'string', 'max' => 30],
-            [['name'], 'trim'],
-            [['name'], 'unique'],
+            [['full_name'], 'string', 'max' => 360],
+            [['name', 'full_name'], 'trim'],
+            [['name', 'full_name'], 'unique'],
             [['inn_name', 'inn_legal_name'], 'string', 'max' => 10],
             [['inn_name', 'inn_legal_name'], 'trim'],
             [['inn_size', 'inn_legal_size'], 'integer'],
             [
                 [
-                    'name',
+                    'name', 'full_name',
                     'inn_name', 'inn_legal_name',
                     'inn_size', 'inn_legal_size',
                 ], 'required'
@@ -36,6 +37,7 @@ class Country extends ActiveRecord
         return [
             'id' => 'ID',
             'name' => 'Название',
+            'full_name' => 'Полное название',
             'inn_legal_name' => 'Название ID Юр. лица',
             'inn_legal_size' => 'Размер ID Юр. лица',
             'inn_name' => 'Название ID Физ. лица',

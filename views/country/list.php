@@ -49,7 +49,16 @@ $this->registerJsFile('@web/js/contextmenu-list.js');
                 'attribute' => 'name',
                 'enableSorting' => false,
                 'headerOptions' => [
-                    'style' => 'width: 360px;'
+                    'style' => 'width: 280px;'
+                ],
+            ],
+
+            // Название
+            [
+                'attribute' => 'full_name',
+                'enableSorting' => false,
+                'headerOptions' => [
+                    'style' => 'width: 460px;'
                 ],
             ],
 
