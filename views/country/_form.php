@@ -12,7 +12,7 @@ use app\models\Country\Country;
 $this->registerCssFile('https://cdn.jsdelivr.net/npm/suggestions-jquery@21.12.0/dist/css/suggestions.min.css');
 $this->registerJsFile('https://cdn.jsdelivr.net/npm/suggestions-jquery@21.12.0/dist/js/jquery.suggestions.min.js',
     ['position' => \yii\web\View::POS_END]);
-$this->registerJsFile('@web/js/dadata.countryform.js', ['position' => \yii\web\View::POS_END]);
+$this->registerJsFile('@web/js/dadata.country-form.js', ['position' => \yii\web\View::POS_END]);
 
 ?>
 
@@ -40,6 +40,11 @@ $this->registerJsFile('@web/js/dadata.countryform.js', ['position' => \yii\web\V
             <!-- Название -->
             <div class="form-col col-3">
                 <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
+            </div>
+
+            <!-- Код -->
+            <div class="form-col col-1">
+                <?= $form->field($model, 'alfa2')->textInput(['readonly' => true]) ?>
             </div>
 
             <!-- Полное название -->

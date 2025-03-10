@@ -15,6 +15,7 @@ class Country extends ActiveRecord
     public function rules()
     {
         return [
+            [['alfa2'], 'string'],
             [['name'], 'string', 'max' => 30],
             [['full_name'], 'string', 'max' => 360],
             [['name', 'full_name'], 'trim'],
@@ -36,6 +37,7 @@ class Country extends ActiveRecord
     {
         return [
             'id' => 'ID',
+            'alfa2' => 'Код',
             'name' => 'Название',
             'full_name' => 'Полное название',
             'inn_legal_name' => 'Название ID Юр. лица',

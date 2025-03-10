@@ -2,6 +2,7 @@
 
 use yii\bootstrap5\ActiveForm;
 use yii\bootstrap5\Html;
+use yii\web\View;
 use kartik\select2\Select2;
 use app\models\Country\Country;
 use app\models\LegalSubject\LegalSubject;
@@ -11,12 +12,21 @@ use app\models\LegalSubject\LegalSubject;
 /** @var LegalSubject $model */
 /** @var string $header */
 
+$this->registerCssFile('https://cdn.jsdelivr.net/npm/suggestions-jquery@21.12.0/dist/css/suggestions.min.css');
+$this->registerJsFile('https://cdn.jsdelivr.net/npm/suggestions-jquery@21.12.0/dist/js/jquery.suggestions.min.js',
+    ['position' => View::POS_END]);
+
+$alfa2 = '';
 $innName = 'ИНН';
 $isLegal = true;
 if (isset($model->is_legal) && isset($model->country)) {
     $innName = $model->is_legal ? $model->country->inn_legal_name : $model->country->inn_name;
     $isLegal = (bool)$model->is_legal;
+    $alfa2 = $model->country->alfa2;
 }
+
+$this->registerJs('let countryCode = "' . $alfa2 . '";', View::POS_HEAD);
+$this->registerJsFile('@web/js/dadata.legal-subject-form.js', ['position' => View::POS_END]);
 ?>
 
 <div class="page-top-panel">
@@ -55,6 +65,14 @@ if (isset($model->is_legal) && isset($model->country)) {
                                     labelInnField.innerText = data;
                                 }
                             );
+                            $.post(
+                                "/country/get-alfa2", 
+                                {id: $(this).val()}, 
+                                (data) => {
+                                    countryCode = data;
+                                    setInnSuggestions();
+                                }
+                            );
                         ',
                     ],
                 ]); ?>
@@ -65,7 +83,7 @@ if (isset($model->is_legal) && isset($model->country)) {
             <!-- Тип -->
             <div class="form-col col-2">
                 <?= $form->field($model, 'is_legal')->widget(Select2::class, [
-                    'data' => [0 => 'Физическое лицо', 1 => 'Юридическое лицо'],
+                    'data' => [0 => 'ИП', 1 => 'Юридическое лицо'],
                     'hideSearch' => true,
                     'options' => [
                         'onchange' => '
@@ -123,7 +141,7 @@ if (isset($model->is_legal) && isset($model->country)) {
             </div>
 
             <!-- Бухгалтер -->
-            <div class="form-col col-4">
+            <div class="form-col col-4" hidden>
                 <?= $form->field($model, 'accountant')->textInput(['maxlength' => true]) ?>
             </div>
         </div>

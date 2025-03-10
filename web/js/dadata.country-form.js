@@ -1,7 +1,8 @@
 const token = '3a202d94848db5bf4d7e51ce26885ad0c9440860';
 
-const $country = $('#country-name');
-const $country_full = $('#country-full_name');
+const $name = $('#country-name');
+const $alfa2 = $('#country-alfa2');
+const $fullName = $('#country-full_name');
 
 function join(arr /*, separator */) {
     let separator = arguments.length > 1 ? arguments[1] : ', ';
@@ -24,7 +25,7 @@ function formatSelectedCountry(suggestion) {
     return addressValue;
 }
 
-let sgsCountry = $country.suggestions({
+let sgsCountry = $name.suggestions({
     token: token,
     type: 'COUNTRY',
     minChars: 2,  // Символ, с которого включаются подсказки
@@ -34,7 +35,9 @@ let sgsCountry = $country.suggestions({
     formatResult: formatResultCountry,
     formatSelected: formatSelectedCountry,
     onSelect: (sgs) => {
+        let alfa2 = sgs.data.alfa2 ? sgs.data.alfa2 : '';
         let fullName = sgs.data.name ? sgs.data.name : sgs.data.name_short;
-        $country_full.val(fullName);
+        $alfa2.val(alfa2);
+        $fullName.val(fullName);
     },
 }).suggestions();

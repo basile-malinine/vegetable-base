@@ -66,4 +66,13 @@ class CountryController extends EntityController
 
         return $isLegal ? $model->inn_legal_name : $model->inn_name;
     }
+
+    public function actionGetAlfa2()
+    {
+        $id = \Yii::$app->request->post('id');
+        \Yii::$app->response->format = Response::FORMAT_JSON;
+        $model = $this->findModel($id);
+
+        return $model->alfa2;
+    }
 }
