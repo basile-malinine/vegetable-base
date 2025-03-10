@@ -24,8 +24,10 @@ class LegalSubject extends ActiveRecord
             [['inn'], 'unique', 'targetAttribute' => ['inn' , 'country_id'],
                 'message' => 'Комбинация {attribute} и Страна уже существует'],
             [['is_legal'], 'boolean'],
+            [['director'], 'string', 'max' => 255],
+            [['accountant'], 'string', 'max' => 255],
             [['comment'], 'string'],
-            [['inn'], 'checkInnForCountry']
+            [['inn'], 'checkInnForCountry'],
         ];
     }
 
