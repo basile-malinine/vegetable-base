@@ -47,6 +47,7 @@ function parseParty(sgs) {
     // Получаем объект data из выбранной подсказки
     const d = sgs.data;
 
+    // Если требуется изменяем Тип ЮФЛ
     if (d.type === 'LEGAL' && $isLegal.val() != 1) {
         $isLegal.val(1).trigger('change');
     } else if (d.type === 'INDIVIDUAL' && $isLegal.val() != 0) {
@@ -62,9 +63,6 @@ function parseParty(sgs) {
             shortName = d.name.short ? d.name.short : d.name.full;
             shortName += d.opf.short ? ', ' + d.opf.short : '';
             fullName = d.name.short_with_opf ? d.name.short_with_opf : '';
-            if (fullName.length > 512) {
-                fullName = fullName.substring(0, 512);
-            }
             inn = d.inn;
 
             // Заполняем поля в форме
@@ -74,7 +72,12 @@ function parseParty(sgs) {
 
             // Если Юридическое лицо
             if (d.type === 'LEGAL') {
-                let director = d.management.name ? d.management.name : '';
+                let director =
+                    d.management !== null
+                    && d.management.post
+                    && d.management.post.toLowerCase().includes('директор')
+                    && d.management.name
+                        ? d.management.name : '';
                 $director.val(director);
             }
             break;
@@ -86,9 +89,6 @@ function parseParty(sgs) {
                 shortName = d.fio_ru ? d.fio_ru : '';
             }
             fullName = d.short_name_ru ? d.short_name_ru : '';
-            if (fullName.length > 100) {
-                fullName = fullName.substring(0, 100);
-            }
             inn = d.unp;
 
             // Заполняем поля в форме

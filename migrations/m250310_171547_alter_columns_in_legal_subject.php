@@ -2,7 +2,7 @@
 
 use yii\db\Migration;
 
-class m250310_171547_alter_columns_in_country extends Migration
+class m250310_171547_alter_columns_in_legal_subject extends Migration
 {
     public function up()
     {
