@@ -146,11 +146,17 @@ $this->registerJsFile('@web/js/dadata.legal-subject-form.js', ['position' => Vie
             </div>
         </div>
 
+        <div class="row form-row">
+            <!-- Адрес -->
+            <div class="form-col col-12">
+                <?= $form->field($model, 'address')->textinput(['maxlength' => true]) ?>
+            </div>
+        </div>
+
         <div class="row form-last-row">
             <!-- Комментарий -->
             <div class="form-col col-12">
-                <?= $form->field($model, 'comment')->textarea()
-                    ->label() ?>
+                <?= $form->field($model, 'comment')->textarea() ?>
             </div>
         </div>
 

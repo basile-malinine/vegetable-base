@@ -9,6 +9,7 @@ const $name = $('#legalsubject-name');
 const $fullName = $('#legalsubject-full_name');
 const $inn = $('#legalsubject-inn');
 const $director = $('#legalsubject-director');
+const $address = $('#legalsubject-address');
 const $isLegal = $('#legalsubject-is_legal');
 let sgsPlugin = null;
 
@@ -57,6 +58,7 @@ function parseParty(sgs) {
     let shortName = '';
     let fullName = '';
     let inn = '';
+    let address = '';
     switch (countryCode) {
         case 'RU':
             // Извлекаем все необходимые поля
@@ -64,11 +66,13 @@ function parseParty(sgs) {
             shortName += d.opf.short ? ', ' + d.opf.short : '';
             fullName = d.name.short_with_opf ? d.name.short_with_opf : '';
             inn = d.inn;
+            address = d.address.unrestricted_value ? d.address.unrestricted_value : '';
 
             // Заполняем поля в форме
             $inn.val(inn);
             $name.val(shortName);
             $fullName.val(fullName);
+            $address.val(address);
 
             // Если Юридическое лицо
             if (d.type === 'LEGAL') {
@@ -90,11 +94,13 @@ function parseParty(sgs) {
             }
             fullName = d.short_name_ru ? d.short_name_ru : '';
             inn = d.unp;
+            address = d.address ? d.address : '';
 
             // Заполняем поля в форме
             $inn.val(inn);
             $name.val(shortName);
             $fullName.val(fullName);
+            $address.val(address);
             break;
     }
 }

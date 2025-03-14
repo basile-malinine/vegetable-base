@@ -26,6 +26,7 @@ class LegalSubject extends ActiveRecord
             [['is_legal'], 'boolean'],
             [['director'], 'string', 'max' => 255],
             [['accountant'], 'string', 'max' => 255],
+            [['address'], 'string', 'max' => 255],
             [['comment'], 'string'],
             [['inn'], 'checkInnForCountry'],
         ];
@@ -52,6 +53,7 @@ class LegalSubject extends ActiveRecord
             'inn' => 'ИНН',
             'director' => 'Директор',
             'accountant' => 'Бухгалтер',
+            'address' => 'Адрес',
             'comment' => 'Комментарий',
         ];
     }
