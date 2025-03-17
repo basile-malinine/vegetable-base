@@ -42,6 +42,14 @@ echo Nav::widget([
                 ],
 
                 '<hr class="dropdown-divider">',
+
+                [
+                    'label' => 'Группы источников информации',
+                    'url' => ['/info-source-group'],
+                ],
+
+                '<hr class="dropdown-divider">',
+
                 [
                     'label' => 'Контрагенты',
                     'url' => ['/company'],

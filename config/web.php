@@ -99,6 +99,9 @@ $config = [
 
                 // CountryController Страны
                 'country/<action:(edit|delete)>/<id:\d+>' => 'country/<action>',
+
+                // InfoSourceGroupController Страны
+                'info-source-group/<action:(edit|delete)>/<id:\d+>' => 'info-source-group/<action>',
             ],
         ],
     ],
