@@ -61,6 +61,12 @@ echo Nav::widget([
                 ],
 
                 [
+                    'label' => 'Типы и Классы контрагентов',
+                    'url' => ['/type-company'],
+                    'disabled' => !(bool)Company::find()->count(),
+                ],
+
+                [
                     'label' => 'Псевдонимы контрагентов',
                     'url' => ['/company-alias'],
                     'disabled' => !(bool)Company::find()->count(),

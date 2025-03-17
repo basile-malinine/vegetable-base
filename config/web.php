@@ -105,6 +105,14 @@ $config = [
 
                 // InfoSourceController Источники информации
                 'info-source/<action:(edit|delete)>/<id:\d+>' => 'info-source/<action>',
+
+                // TypeCompanyController Типы контрагентов
+                'type-company/<action:(edit|delete)>/<id:\d+>' => 'type-company/<action>',
+
+                // TypeClassCompanyController Типы и Классы контрагентов
+                'type-class-company/<action:(index|create)>/<type_company_id:\d+>' => 'type-class-company/<action>',
+                'type-class-company/<action:(edit|delete)>/<id:\d+>' => 'type-class-company/<action>',
+                'type-class-company/<action:(edit|delete)>/<id:\d+>/<type_company_id:\d+>' => 'type-class-company/<action>',
             ],
         ],
     ],
