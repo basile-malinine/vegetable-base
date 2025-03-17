@@ -7,6 +7,8 @@ use yii\data\ActiveDataProvider;
 
 class LegalSubjectSearch extends LegalSubject
 {
+    public $country;
+
     public function rules(): array
     {
         return [
