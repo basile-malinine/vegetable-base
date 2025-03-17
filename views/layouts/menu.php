@@ -48,6 +48,11 @@ echo Nav::widget([
                     'url' => ['/info-source-group'],
                 ],
 
+                [
+                    'label' => 'Источники информации',
+                    'url' => ['/info-source'],
+                ],
+
                 '<hr class="dropdown-divider">',
 
                 [

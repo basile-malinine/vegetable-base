@@ -3,6 +3,7 @@
 namespace app\models\InfoSourceGroup;
 
 use yii\db\ActiveRecord;
+use app\models\InfoSource\InfoSource;
 
 class InfoSourceGroup extends ActiveRecord
 {
@@ -27,6 +28,11 @@ class InfoSourceGroup extends ActiveRecord
             'name' => 'Название',
             'comment' => 'Комментарий',
         ];
+    }
+
+    public function getInfo_source()
+    {
+        return $this->hasMany(InfoSource::class, ['info_source_group_id' => 'id']);
     }
 
     public static function getList()
