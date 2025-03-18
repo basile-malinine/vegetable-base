@@ -28,6 +28,11 @@ class TypeClassCompanySearch extends TypeClassCompany
             return $dataProvider;
         }
 
+        // Если выводим список для конкретного Контрагента
+        if ($params['type_company_id'] ?? null) {
+            $query->andFilterWhere(['type_company_id' => $params['type_company_id']]);
+        }
+
         $query->orderBy('name ASC');
 
         return $dataProvider;
