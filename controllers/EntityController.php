@@ -35,8 +35,10 @@ class EntityController extends Controller
     protected function postRequestAnalysis($model): bool
     {
         if ($model->load($this->request->post())) {
-            if ($model->validate() && $model->save()) {
-                return true;
+            if ($model->validate()) {
+                if ($model->save()) {
+                    return true;
+                }
             }
         }
         return false;

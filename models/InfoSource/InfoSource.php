@@ -2,6 +2,7 @@
 
 namespace app\models\InfoSource;
 
+use app\models\Company\CompanyTypeClassCompany;
 use yii\db\ActiveRecord;
 use app\models\InfoSourceGroup\InfoSourceGroup;
 
@@ -40,7 +41,12 @@ class InfoSource extends ActiveRecord
         return $this->hasOne(InfoSourceGroup::class, ['id' => 'info_source_group_id']);
     }
 
-    public function getList()
+    public function getCompany_type_class_company()
+    {
+        return $this->hasMany(CompanyTypeClassCompany::class, ['info_source_id' => 'id']);
+    }
+
+    public static function getList()
     {
         return self::find()
             ->select(['name', 'id'])

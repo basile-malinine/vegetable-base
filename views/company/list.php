@@ -121,43 +121,6 @@ $this->registerJsFile('@web/js/contextmenu-list.js');
                 ],
             ],
 
-            // Продавец
-            [
-                'format' => 'raw',
-                'header' => '<i class="fas fa-upload"></i>',
-                'attribute' => 'is_seller',
-                'filter' => [0 => 'нет', 1 => 'да'],
-                'filterInputOptions' => ['class' => 'form-control form-control-sm', 'prompt' => 'все'],
-                'value' => function ($model) {
-                    return $model->is_seller ? '<i class="fas fa-check"></i>' : '';
-                },
-                'contentOptions' => [
-                    'style' => 'color: #0077ff; text-align: center',
-                ],
-                'headerOptions' => [
-                    'style' => 'width: 56px',
-                ],
-            ],
-
-            // Покупатель
-            [
-                'format' => 'raw',
-                'header' => '<i class="fa fa-download"></i>',
-                'attribute' => 'is_buyer',
-                'filter' => [0 => 'нет', 1 => 'да'],
-                'filterInputOptions' => ['class' => 'form-control form-control-sm', 'prompt' => 'все'],
-                'value' => function ($model) {
-                    return $model->is_buyer ? '<i class="fas fa-check"></i>' : '';
-                },
-                'contentOptions' => [
-                    'style' => 'color: #0077ff; text-align: center',
-                ],
-                'headerOptions' => [
-                    'style' => 'width: 56px;',
-                ],
-
-            ],
-
             // Пустота
             [
             ],

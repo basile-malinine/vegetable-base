@@ -113,6 +113,11 @@ $config = [
                 'type-class-company/<action:(index|create)>/<type_company_id:\d+>' => 'type-class-company/<action>',
                 'type-class-company/<action:(edit|delete)>/<id:\d+>' => 'type-class-company/<action>',
                 'type-class-company/<action:(edit|delete)>/<id:\d+>/<type_company_id:\d+>' => 'type-class-company/<action>',
+
+                // CompanyTypeClassCompanyController свойства Тип и Класс для контрагентов
+                'company-type-class-company/<action:(index|create)>/<company_id:\d+>' => 'company-type-class-company/<action>',
+                'company-type-class-company/<action:(edit|delete)>/<id:\d+>' => 'company-type-class-company/<action>',
+                'company-type-class-company/<action:(edit|delete)>/<id:\d+>/<company_id:\d+>' => 'company-type-class-company/<action>',
             ],
         ],
     ],

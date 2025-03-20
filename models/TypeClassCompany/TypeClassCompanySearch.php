@@ -28,7 +28,7 @@ class TypeClassCompanySearch extends TypeClassCompany
             return $dataProvider;
         }
 
-        // Если выводим список для конкретного Контрагента
+        // Если выводим список для конкретного Типа контрагента
         if ($params['type_company_id'] ?? null) {
             $query->andFilterWhere(['type_company_id' => $params['type_company_id']]);
         }

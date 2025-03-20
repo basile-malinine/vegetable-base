@@ -3,6 +3,7 @@
 namespace app\models\TypeClassCompany;
 
 use yii\db\ActiveRecord;
+use app\models\Company\CompanyTypeClassCompany;
 
 class TypeCompany extends ActiveRecord
 {
@@ -31,6 +32,11 @@ class TypeCompany extends ActiveRecord
     public function getType_class_company()
     {
         return $this->hasMany(TypeClassCompany::class, ['type_company_id' => 'id']);
+    }
+
+    public function getCompany_type_class_company()
+    {
+        return $this->hasMany(CompanyTypeClassCompany::class, ['type_company_id' => 'id']);
     }
 
     public static function getList()

@@ -3,6 +3,7 @@
 namespace app\controllers;
 
 use yii\web\NotFoundHttpException;
+use yii\web\Response;
 use app\models\TypeClassCompany\TypeCompany;
 use app\models\TypeClassCompany\TypeClassCompany;
 use app\models\TypeClassCompany\TypeClassCompanySearch;
@@ -80,5 +81,18 @@ class TypeClassCompanyController extends EntityController
         }
 
         throw new NotFoundHttpException('The requested page does not exist.');
+    }
+
+    public function actionGetListByType()
+    {
+        $typeId = \Yii::$app->request->post('typeId');
+        \Yii::$app->response->format = Response::FORMAT_JSON;
+        $classes = TypeClassCompany::getListByTypeCompanyId($typeId);
+        $ret = [];
+        foreach ($classes as $key => $class) {
+            $ret[] = ['value' => $key, 'text' => $class];
+        }
+
+        return $ret;
     }
 }
