@@ -35,8 +35,6 @@ class Company extends ActiveRecord
             [['name'], 'trim'],
             [['name'], 'unique'],
             [['name'], 'string', 'max' => 30],
-            [['is_seller', 'is_buyer'], 'integer'],
-            [['aliases', 'legalSubjects'], 'safe'],
         ];
     }
 
@@ -49,8 +47,6 @@ class Company extends ActiveRecord
             'id' => 'ID',
             'name' => 'Название',
             'aliases' => 'Псевдонимы',
-            'is_seller' => 'Продавец',
-            'is_buyer' => 'Покупатель',
         ];
     }
 
