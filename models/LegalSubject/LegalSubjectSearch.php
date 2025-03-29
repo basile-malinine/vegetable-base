@@ -53,7 +53,7 @@ class LegalSubjectSearch extends LegalSubject
         }
 
         // grid filtering conditions
-        $query->andFilterWhere(['like', 'name', $this->name]);
+        $query->andFilterWhere(['like', 'legal_subject.name', $this->name]);
         $query->andFilterWhere(['like', 'inn', $this->inn]);
         $query->andFilterWhere(['like', 'country.name', $this->country]);
         $query->andFilterWhere(['like', 'comment', $this->comment]);
