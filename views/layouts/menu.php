@@ -22,6 +22,7 @@ echo Nav::widget([
                 [
                     'label' => 'Продукты',
                     'url' => ['/product'],
+                    'disabled' => ProductGroup::find()->count() === 0,
                 ],
 
                 [

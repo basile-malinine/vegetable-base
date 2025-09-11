@@ -8,8 +8,9 @@
 
 use yii\bootstrap5\ActiveForm;
 use yii\bootstrap5\Html;
+use kartik\select2\Select2;
 use app\models\Color\Color;
-use app\models\Unit\Unit;
+use app\models\Product\ProductGroup;
 
 $this->registerCssFile('@web/css/company.css');
 
@@ -38,6 +39,16 @@ $action = Yii::$app->controller->action->id;
         ]); ?>
 
         <div class="row <?= Yii::$app->requestedAction->id == 'create' ? 'form-last-row' : 'form-row' ?>">
+            <!-- Группа классификатора -->
+            <div class="form-col col-3">
+                <?= $form->field($model, 'product_group_id')->widget(Select2::class, [
+                    'data' => ProductGroup::getList(),
+                    'options' => [
+                        'placeholder' => 'Не назначена',
+                    ],
+                ]); ?>
+            </div>
+
             <!-- Наименование -->
             <div class="form-col col-4">
                 <?= $form->field($model, 'name')->textInput([
@@ -45,47 +56,48 @@ $action = Yii::$app->controller->action->id;
                 ]) ?>
             </div>
 
-        <!-- При создании не отображается -->
-        <div class="row form-last-row" <?= Yii::$app->requestedAction->id == 'create' ? 'hidden' : '' ?>>
-            <div class="col-4">
-                <!-- Цвета продукта -->
-                <div class="row">
-                    <div class="form-col col-12">
-                        <?php
-                        $product_colors = $model->product_color;
-                        $ids = [];
-                        foreach ($product_colors as $idx => $product_color) {
-                            $ids[] = $product_color->color_id;
-                        }
-                        $items = Color::getListByIds($ids);
-                        $values = '';
-                        foreach ($items as $id => $value) {
-                            $values .= '<div class="set-item">' . $value . '</div>';
-                        }
-                        if (empty($values)) {
-                            $values = '<div class="set-item-none">Нет</div>';
-                        }
-                        ?>
-                        <div class="mb-3">
-                            <label class="col-form-label pt-0">Цвета</label>
-                            <div class="set-container d-flex flex-row">
-                                <div class="d-flex flex-row flex-wrap">
-                                    <?php echo $values; ?>
+            <!-- При создании не отображается -->
+            <div class="row form-last-row" <?= Yii::$app->requestedAction->id == 'create' ? 'hidden' : '' ?>>
+                <div class="col-4">
+                    <!-- Цвета продукта -->
+                    <div class="row">
+                        <div class="form-col col-12">
+                            <?php
+                            $product_colors = $model->product_color;
+                            $ids = [];
+                            foreach ($product_colors as $idx => $product_color) {
+                                $ids[] = $product_color->color_id;
+                            }
+                            $items = Color::getListByIds($ids);
+                            $values = '';
+                            foreach ($items as $id => $value) {
+                                $values .= '<div class="set-item">' . $value . '</div>';
+                            }
+                            if (empty($values)) {
+                                $values = '<div class="set-item-none">Нет</div>';
+                            }
+                            ?>
+                            <div class="mb-3">
+                                <label class="col-form-label pt-0">Цвета</label>
+                                <div class="set-container d-flex flex-row">
+                                    <div class="d-flex flex-row flex-wrap">
+                                        <?php echo $values; ?>
+                                    </div>
+                                    <a href="/product-color/index/<?= $model->id ?>" id="legal-subjects-edit"
+                                       class="btn-item-edit"><i class="fa fa-ellipsis-h"></i></a>
                                 </div>
-                                <a href="/product-color/index/<?= $model->id ?>" id="legal-subjects-edit" class="btn-item-edit"><i class="fa fa-ellipsis-h"></i></a>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+
+            <div class="form-group">
+                <?= Html::submitButton('Сохранить', ['class' => 'btn btn-light btn-outline-primary btn-sm me-2']) ?>
+                <?= Html::a('Отмена', '/product/index', ['class' => 'btn btn-light btn-outline-secondary btn-sm']) ?>
+            </div>
+
+            <?php ActiveForm::end(); ?>
+
         </div>
-
-        <div class="form-group">
-            <?= Html::submitButton('Сохранить', ['class' => 'btn btn-light btn-outline-primary btn-sm me-2']) ?>
-            <?= Html::a('Отмена', '/product/index', ['class' => 'btn btn-light btn-outline-secondary btn-sm']) ?>
-        </div>
-
-        <?php ActiveForm::end(); ?>
-
     </div>
-</div>

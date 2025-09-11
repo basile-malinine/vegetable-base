@@ -6,8 +6,13 @@ use yii\db\ActiveRecord;
 use yii\helpers\ArrayHelper;
 use app\models\Color\Color;
 use app\models\ProductColor\ProductColor;
-use app\models\Unit\Unit;
 
+/**
+ * @property int $id
+ * @property int $product_group_id Группа классификатора
+ * @property string $name Название
+ * @property string|null $comment Комментарий
+ */
 class Product extends ActiveRecord
 {
     public static function tableName()
@@ -18,8 +23,10 @@ class Product extends ActiveRecord
     public function rules()
     {
         return [
-            [['name'], 'required'],
+            [['product_group_id', 'name'], 'required'],
             [['name'], 'string', 'max' => 100],
+            [['comment'], 'string'],
+            [['comment'], 'default', 'value' => null],
         ];
     }
 
@@ -27,7 +34,9 @@ class Product extends ActiveRecord
     {
         return [
             'id' => 'ID',
+            'product_group_id' => 'Группа классификатора',
             'name' => 'Наименование',
+            'comment' => 'Комментарий',
         ];
     }
 

@@ -37,4 +37,13 @@ class ProductGroup extends ActiveRecord
             'comment' => 'Комментарий',
         ];
     }
+
+    public static function getList()
+    {
+        return self::find()
+            ->select(['name', 'id'])
+            ->indexBy('id')
+            ->orderBy(['name' => SORT_ASC])
+            ->column();
+    }
 }
