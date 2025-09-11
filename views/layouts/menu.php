@@ -4,6 +4,7 @@ use yii\bootstrap5\Nav;
 use app\models\Company\Company;
 use app\models\LegalSubject\LegalSubject;
 use app\models\Product\Product;
+use app\models\Product\ProductGroup;
 
 echo Nav::widget([
     'options' => ['class' => 'navbar-nav ms-5'],
@@ -13,6 +14,11 @@ echo Nav::widget([
         [
             'label' => 'Справочники',
             'items' => [
+                [
+                    'label' => 'Классификатор продуктов',
+                    'url' => ['/product-group'],
+                ],
+
                 [
                     'label' => 'Продукты',
                     'url' => ['/product'],

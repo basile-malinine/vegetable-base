@@ -118,6 +118,9 @@ $config = [
                 'company-type-class-company/<action:(index|create)>/<company_id:\d+>' => 'company-type-class-company/<action>',
                 'company-type-class-company/<action:(edit|delete)>/<id:\d+>' => 'company-type-class-company/<action>',
                 'company-type-class-company/<action:(edit|delete)>/<id:\d+>/<company_id:\d+>' => 'company-type-class-company/<action>',
+
+                // TypeCompanyController Типы контрагентов
+                'product-group/<action:(edit|delete)>/<id:\d+>' => 'product-group/<action>',
             ],
         ],
     ],
