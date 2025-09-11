@@ -125,6 +125,7 @@ class CompanyTypeClassCompany extends ActiveRecord
             ->select('id')
             ->column();
 
+        $newRecs = [];
         foreach ($typeIds as $typeId) {
             $dateActual = CompanyTypeClassCompany::find()->select(['MAX(date_actuality)'])
                 ->where(['company_id' => $id, 'type_company_id' => $typeId])->scalar();
