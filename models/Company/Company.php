@@ -10,8 +10,6 @@ use yii\db\ActiveRecord;
  * @property int $id
  * @property string $name Название
  * @property string $aliases Псевдонимы
- * @property int $is_seller Продавец
- * @property int $is_buyer Покупатель
  */
 class Company extends ActiveRecord
 {
