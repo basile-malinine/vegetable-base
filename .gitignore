@@ -1,41 +1,18 @@
 # phpstorm project files
 .idea
 
-composer.
-yii
-yii.bat
+.osp
 
 composer.lock
-
-# zend studio for eclipse project files
-.buildpath
-.project
-.settings
 
 # windows thumbnail cache
 Thumbs.db
 
-# composer vendor dir
-/vendor
-
-# composer itself is not needed
-composer.phar
-
-# Mac DS_Store Files
-.DS_Store
-
-# phpunit itself is not needed
-phpunit.phar
-# local phpunit config
-/phpunit.xml
-
-tests/_output/*
-tests/_support/_generated
-
 #vagrant folder
 /vagrant
 
-/web/css/custom.bootstrap.css
-/web/css/tochni.base.css
+# composer vendor dir
+/vendor
 
-/config/db.php
+tests/_output/*
+tests/_support/_generated
